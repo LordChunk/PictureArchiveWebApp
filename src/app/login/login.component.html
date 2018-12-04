@@ -1,0 +1,15 @@
+<form [formGroup]="credentialsForm">
+  <mat-form-field id="email">
+    <mat-label>Email Address</mat-label>
+    <input matInput type="email" name="email" formControlName="email">
+  </mat-form-field>
+  
+  <mat-form-field id="password">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" name="password" formControlName="password">
+  </mat-form-field>
+
+  <button mat-raised-button (click)="login()" *ngIf="!authService.isLoggedIn()">Login</button>
+  <button mat-raised-button (click)="register()" *ngIf="!authService.isLoggedIn()">Register</button>
+  <button mat-raised-button (click)="logout()" *ngIf="authService.isLoggedIn()">Logout</button>
+</form>
