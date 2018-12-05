@@ -5,10 +5,19 @@
     width: 90vw;
     height: 100%;
 
-    img {
-        height: 25vh;
-        widows: auto;
-        padding: 0 0 1em 1em;
+    @media (min-width: 500px) {
+        img {
+            height: 25vh;
+            width: auto;
+            padding: 0 0 1em 1em;
+        }
+    }
+    @media (max-width: 500px) {
+        img {
+            width: 90vw;
+            height: inherit;
+            padding-bottom: 1em;
+        }
     }
 }
 

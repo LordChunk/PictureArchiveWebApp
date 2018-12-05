@@ -18,6 +18,8 @@ export class UploadPictureComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFiles = event.target.files;
 
+    this.previewUrls = [];
+
     Array.from(this.selectedFiles)
       .forEach((file) => {
         (this.preview(file));
