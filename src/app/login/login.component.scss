@@ -1,0 +1,14 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    max-width: 90vw;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    button {
+        width: 120px;
+    }
+}
