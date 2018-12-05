@@ -7,11 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavfooterModule } from './navfooter/navfooter.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginModule } from './login/login.module';
+import { UploadPictureModule } from './upload-picture/upload-picture.module';
+import { ListPictureModule } from './list-picture/list-picture.module';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AuthInterceptor } from './services/AuthInterceptor';
-import { UploadPictureModule } from './upload-picture/upload-picture.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { UploadPictureModule } from './upload-picture/upload-picture.module';
     LoginModule,
     UploadPictureModule,
     HttpClientModule,
+    ListPictureModule,
   ],
   bootstrap: [AppComponent],
   providers: [

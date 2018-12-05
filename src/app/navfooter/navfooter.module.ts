@@ -4,6 +4,7 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { MaterialModule } from '../material/material.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     NavComponent,
     FooterComponent,
+    NotFoundComponent,
   ],
   exports: [
     NavComponent,
