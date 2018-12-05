@@ -13,8 +13,10 @@ export class PictureService {
   public upload(files: FileList) {
     const uploadData = new FormData();
 
+    let i = 0;
     Array.from(files).forEach((file) => {
-      uploadData.append('image', file);
+      uploadData.append(i.toString(), file);
+      i += 1;
     });
 
     console.log(this.upload);
