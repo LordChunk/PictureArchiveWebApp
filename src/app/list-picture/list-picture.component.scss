@@ -1,0 +1,13 @@
+.image-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90vw;
+    height: 100%;
+
+    img {
+        height: 25vh;
+        widows: auto;
+        padding: 0 0 1em 1em;
+    }
+}
