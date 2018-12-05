@@ -6,9 +6,10 @@
   accept="image/*"
   #fileInput>
 
-<button mat-button (click)="fileInput.click()">Select Files</button>
-<button mat-button (click)="submitForm()">Upload Pictures</button>
+<button mat-raised-button (click)="fileInput.click()">Select Files</button>
 
-<p *ngFor="let item of previewUrls">
-  <img src="{{ item }}" alt="">
-</p>
+<div class="image-wrapper">
+  <img *ngFor="let item of previewUrls" src="{{ item }}" alt="">
+</div>
+
+<button class="float-upload" mat-fab (click)="submitForm()"><mat-icon>publish</mat-icon></button>
