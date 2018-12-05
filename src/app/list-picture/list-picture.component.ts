@@ -10,7 +10,14 @@ export class ListPictureComponent implements OnInit {
 
   constructor(private pictureService: PictureService) { }
 
+  public ImageLinks: string[];
   ngOnInit() {
+    // Subscribe to list of image links
+    this.pictureService.getPictureRefs(10).subscribe(
+      (data: string[]) => {
+        // Assign data to return value
+        this.ImageLinks = data;
+      });
   }
 
 }

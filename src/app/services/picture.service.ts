@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +26,19 @@ export class PictureService {
       .subscribe((event) => {
         console.log(event); // handle event here
       });
+  }
+
+  public getPictureRefs(amount?: number): Observable<object> {
+    let reqNumbers: number;
+
+    // Check for valid data
+    if (amount <= 0 || amount > 100) {
+      reqNumbers = 10;
+    } else {
+      reqNumbers = amount;
+    }
+
+    // Request data and return as observable
+    return this.http.get(`${environment.apiUri}/picture/${reqNumbers}`).pipe();
   }
 }
