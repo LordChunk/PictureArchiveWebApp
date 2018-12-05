@@ -18,9 +18,6 @@ export class AuthService {
       .subscribe((data) => {
         // Set session vars
         this.setSession(data.token);
-
-        // Log vars
-        // console.log(this.jwtHelper.decodeToken(data.token));
       });
   }
 

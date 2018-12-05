@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UploadPicturesService } from '../services/upload-pictures.service';
+import { PictureService } from '../services/picture.service';
 
 @Component({
   selector: 'app-upload-picture',
@@ -8,7 +8,7 @@ import { UploadPicturesService } from '../services/upload-pictures.service';
 })
 export class UploadPictureComponent implements OnInit {
 
-  constructor(private UploadService: UploadPicturesService) { }
+  constructor(private pictureService: PictureService) { }
   selectedFiles: FileList;
 
   ngOnInit() {
@@ -19,6 +19,6 @@ export class UploadPictureComponent implements OnInit {
   }
 
   submitForm() {
-    this.UploadService.upload(this.selectedFiles);
+    this.pictureService.upload(this.selectedFiles);
   }
 }
