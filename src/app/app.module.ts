@@ -11,6 +11,7 @@ import { LoginModule } from './login/login.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AuthInterceptor } from './services/AuthInterceptor';
+import { UploadPictureModule } from './upload-picture/upload-picture.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './services/AuthInterceptor';
     NavfooterModule,
     DashboardModule,
     LoginModule,
+    UploadPictureModule,
     HttpClientModule,
   ],
   bootstrap: [AppComponent],

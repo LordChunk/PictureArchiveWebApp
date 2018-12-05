@@ -4,15 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { UploadPictureComponent } from './upload-picture/upload-picture.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'upload', component: UploadPictureComponent },
 ];
 
 export const NAVITEMS: NavItem[] = [
   // { name: 'home', path: '', icon: 'home' },
   { name: 'login', path: 'login', icon: 'person_add' },
+  { name: 'Upload Pictures', path: 'upload', icon: 'publish' },
 ];
 @NgModule({
   imports: [

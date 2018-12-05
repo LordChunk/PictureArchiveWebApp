@@ -1,0 +1,10 @@
+<input
+  hidden
+  multiple
+  type="file"
+  (change)="onFileChanged($event)"
+  accept="image/*"
+  #fileInput>
+
+<button mat-button (click)="fileInput.click()">Select Files</button>
+<button mat-button (click)="submitForm()">Upload Pictures</button>
