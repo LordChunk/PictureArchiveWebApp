@@ -9,7 +9,7 @@
         img {
             height: 25vh;
             width: auto;
-            padding: 0 0 1em 1em;
+            padding: .5em;
         }
     }
     @media (max-width: 500px) {
@@ -25,4 +25,21 @@
     position: fixed;
     right: 40px;
     bottom: 40px;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-button {
+    min-width: 250px;
+    max-width: 90vw;
+}
+
+mat-card {
+    margin-top: 25px;
+    max-width: 90vw;
+    min-height: 75vh;
 }
