@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UploadPictureComponent } from './upload-picture.component';
+import { UploadPictureComponent, UploadProgressComponent } from './upload-picture.component';
 import { MaterialModule } from '../material/material.module';
 
 @NgModule({
@@ -10,6 +10,10 @@ import { MaterialModule } from '../material/material.module';
   ],
   declarations: [
     UploadPictureComponent,
+    UploadProgressComponent,
+  ],
+  entryComponents: [
+    UploadProgressComponent,
   ],
 })
 export class UploadPictureModule { }

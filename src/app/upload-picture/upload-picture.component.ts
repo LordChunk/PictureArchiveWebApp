@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { PictureService } from '../services/picture.service';
 
 @Component({
@@ -8,7 +8,10 @@ import { PictureService } from '../services/picture.service';
 })
 export class UploadPictureComponent implements OnInit {
 
-  constructor(private pictureService: PictureService) { }
+  constructor(
+    private pictureService: PictureService,
+    private snackBar: MatSnackBar,
+    ) { }
   selectedFiles: FileList;
   previewUrls: string[] = [];
 
@@ -26,8 +29,12 @@ export class UploadPictureComponent implements OnInit {
       });
   }
 
-  submitForm() {
-    this.pictureService.upload(this.selectedFiles);
+  uploadImages() {
+    const uploadProgress = this.pictureService.upload(this.selectedFiles);
+
+    this.snackBar.openFromComponent(UploadProgressComponent, {
+      data: { uploadProgress },
+    });
   }
 
   preview(file): string {
@@ -43,5 +50,35 @@ export class UploadPictureComponent implements OnInit {
     reader.onload = () => {
       this.previewUrls.push(reader.result.toString());
     };
+  }
+}
+
+import { MAT_SNACK_BAR_DATA, MatSnackBar } from '@angular/material';
+
+@Component({
+  selector: 'app-upload-progress-snackbar',
+  template: `<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>`,
+  styles: [],
+})
+export class UploadProgressComponent implements OnInit {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data) { }
+
+  public UploadObservable;
+
+  public progress = 0;
+  ngOnInit() {
+    this.UploadObservable = this.data.uploadProgress;
+
+    this.UploadObservable.subscribe((event) => {
+      // Don't change value after finished upload
+      if (event.loaded !== undefined) {
+        // Convert progress to percentage and integer
+        this.progress = Math.trunc(event.loaded / (event.total || event.loaded) * 100);
+
+        this.progress.valueOf();
+      }
+      // Log upload progress
+      console.log(this.progress);
+    });
   }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpSentEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class PictureService {
 
   constructor(private http: HttpClient) { }
 
-  public upload(files: FileList) {
+  public upload(files: FileList): Observable<HttpEvent<HttpUploadProgressEvent>> {
     const uploadData = new FormData();
 
     let i = 0;
@@ -19,15 +20,10 @@ export class PictureService {
       i += 1;
     });
 
-    console.log(this.upload);
-
-    this.http.post(`${environment.apiUri}/picture/upload`, uploadData, {
+    return this.http.post<any>(`${environment.apiUri}/picture/upload`, uploadData, {
       reportProgress: true,
       observe: 'events',
-    })
-      .subscribe((event) => {
-        console.log(event); // handle event here
-      });
+    }).pipe();
   }
 
   public getPictureRefs(amount?: number): Observable<object> {
