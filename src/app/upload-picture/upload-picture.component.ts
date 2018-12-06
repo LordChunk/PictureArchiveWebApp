@@ -11,7 +11,7 @@ export class UploadPictureComponent implements OnInit {
   constructor(
     private pictureService: PictureService,
     private snackBar: MatSnackBar,
-    ) { }
+  ) { }
   selectedFiles: FileList;
   previewUrls: string[] = [];
 
@@ -40,7 +40,7 @@ export class UploadPictureComponent implements OnInit {
   preview(file): string {
     const mimeType = file.type;
     if (mimeType.match(/image\/*/) == null) {
-      return  'Only images are supported.';
+      return 'Only images are supported.';
     }
 
     // tslint:disable-next-line:prefer-const
@@ -54,31 +54,28 @@ export class UploadPictureComponent implements OnInit {
 }
 
 import { MAT_SNACK_BAR_DATA, MatSnackBar } from '@angular/material';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-upload-progress-snackbar',
-  template: `<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>`,
-  styles: [],
+  template: `
+  Progress:
+  <mat-progress-bar mode="determinate" [value]="progress | async" *ngIf="progress !== undefined"></mat-progress-bar>`,
+  styles: [`mat-progress-bar { margin-top: 5px;}`],
 })
-export class UploadProgressComponent implements OnInit {
+export class UploadProgressComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data) { }
 
-  public UploadObservable;
-
-  public progress = 0;
-  ngOnInit() {
-    this.UploadObservable = this.data.uploadProgress;
-
-    this.UploadObservable.subscribe((event) => {
-      // Don't change value after finished upload
-      if (event.loaded !== undefined) {
-        // Convert progress to percentage and integer
-        this.progress = Math.trunc(event.loaded / (event.total || event.loaded) * 100);
-
-        this.progress.valueOf();
+  private started = false;
+  public progress = this.data.uploadProgress.pipe(
+    map(({ loaded, total }) => {
+      if (loaded === undefined) {
+        return !this.started ? 0 : 100;
+      // tslint:disable-next-line:no-else-after-return
+      } else {
+        this.started = true;
+        return Math.round(loaded / (total || loaded) * 100);
       }
-      // Log upload progress
-      console.log(this.progress);
-    });
-  }
+    },
+  ));
 }

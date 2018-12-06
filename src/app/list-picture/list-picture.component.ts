@@ -19,5 +19,4 @@ export class ListPictureComponent implements OnInit {
         this.ImageLinks = data;
       });
   }
-
 }

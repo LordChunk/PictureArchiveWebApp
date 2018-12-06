@@ -43,3 +43,16 @@ mat-card {
     max-width: 90vw;
     min-height: 75vh;
 }
+
+.popup{
+    animation: popup 0.3s;
+}
+
+@keyframes popup {
+    0%{
+      transform: scale(0);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
