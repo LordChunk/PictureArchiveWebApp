@@ -26,17 +26,8 @@ export class PictureService {
     }).pipe();
   }
 
-  public getPictureRefs(amount?: number): Observable<object> {
-    let reqNumbers: number;
-
-    // Check for valid data
-    if (amount <= 0 || amount > 100) {
-      reqNumbers = 10;
-    } else {
-      reqNumbers = amount;
-    }
-
+  public getPictureRefs(amount?: number, offset: number = 0): Observable<string[]> {
     // Request data and return as observable
-    return this.http.get(`${environment.apiUri}/picture/${reqNumbers}`).pipe();
+    return this.http.get<string[]>(`${environment.apiUri}/picture/?amount=${amount}&offset=${offset}`).pipe();
   }
 }

@@ -1,3 +1,11 @@
-<div class="image-wrapper">
-  <img *ngFor="let imageHref of ImageLinks" src="//cdn.chu.mk/{{ imageHref }}" alt="">
-</div>
+<cdk-virtual-scroll-viewport
+  itemSize="250"
+  (scrolledIndexChange)="handler($event)">
+
+  <div
+    class="image-div"
+    *cdkVirtualFor="let imageHref of ImageLinks">
+
+    <img src="//cdn.chu.mk/{{ imageHref }}" alt="">
+  </div>
+</cdk-virtual-scroll-viewport>
