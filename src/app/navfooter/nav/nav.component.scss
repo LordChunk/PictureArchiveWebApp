@@ -40,6 +40,13 @@ h1.nav-app-name {
 .container {
   height: 100%;
 }
+// Sets container height manually because percentages don't work porperly otherwise
+@media (max-width: 599px) {
+  .container {
+    // Nav bar height is 56px
+      height: calc(100vh - 56px);
+  }
+}
 
 // OLD UNSED CONTAINER STYLING
 // .container {
