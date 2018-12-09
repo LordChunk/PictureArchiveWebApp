@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { PictureService } from '../services/picture.service';
-import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
-
+import { HttpUploadProgressEvent, HttpEvent } from '@angular/common/http/src/response';
 
 @Component({
   selector: 'app-upload-picture',
@@ -31,9 +30,9 @@ export class UploadPictureComponent implements OnInit {
       });
   }
 
-  async uploadImages() {
+  uploadImages() {
     // Upload picture and save progress to observable
-    const uploadProgress = this.pictureService.upload(this.selectedFiles);
+    const uploadProgress = this.pictureService.upload(this.selectedFiles).pipe(share());
 
     // Create snackbar with observable for progress bar
     this.snackBar.openFromComponent(UploadProgressComponent, {
@@ -70,7 +69,8 @@ export class UploadPictureComponent implements OnInit {
 }
 
 import { MAT_SNACK_BAR_DATA, MatSnackBar, MatSnackBarRef } from '@angular/material';
-import { map } from 'rxjs/operators';
+import { map, share } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-upload-progress-snackbar',
