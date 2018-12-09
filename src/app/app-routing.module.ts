@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -17,11 +16,11 @@ const routes: Routes = [
 ];
 
 export const NAVITEMS: NavItem[] = [
-  // { name: 'home', path: '', icon: 'home' },
   { name: 'login', path: 'login', icon: 'person_add' },
   { name: 'Upload Pictures', path: 'upload', icon: 'publish' },
   { name: 'View Pictures', path: 'view', icon: 'view_list' },
 ];
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
