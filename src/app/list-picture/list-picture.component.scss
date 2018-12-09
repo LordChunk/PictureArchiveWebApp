@@ -16,15 +16,14 @@
 //         }
 //     }
 // }
-
-cdk-virtual-scroll-viewport {
-  width: 80vw;
-  height: 100vh;
+:host,cdk-virtual-scroll-viewport {
+  height: 100%;
+  width: 100%;
 }
 
 .image-div {
   height: 250px;
-  width: 80vw;
+  padding: 25px 0;
   img {
     max-width: 100%;
     max-height: 100%;

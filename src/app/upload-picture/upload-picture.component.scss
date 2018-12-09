@@ -1,3 +1,11 @@
+// :host {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 80vw;
+//   padding: 15px 10vw;
+// }
+
 .image-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -31,6 +39,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 15px;
+    padding-bottom: 5px;
 }
 
 .upload-button {
@@ -44,6 +54,8 @@ mat-card {
     min-height: 75vh;
 }
 
+
+// Popup animation for upload button
 .popup{
     animation: popup 0.3s;
 }
