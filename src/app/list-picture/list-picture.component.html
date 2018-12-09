@@ -1,11 +1,14 @@
 <cdk-virtual-scroll-viewport
-  itemSize="300"
+  itemSize="450"
   (scrolledIndexChange)="handler($event)">
 
-  <div
-    class="image-div"
-    *cdkVirtualFor="let imageHref of ImageLinks">
+  <mat-card *cdkVirtualFor="let imageHref of ImageLinks">
+    <mat-card-header>
+      <mat-card-title>Image Name</mat-card-title>
+    </mat-card-header>
 
-    <img src="//cdn.chu.mk/{{ imageHref }}" alt="">
-  </div>
+    <mat-card-content>
+        <img mat-card-image src="//cdn.chu.mk/{{ imageHref }}" alt="">
+    </mat-card-content>
+  </mat-card>
 </cdk-virtual-scroll-viewport>
