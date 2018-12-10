@@ -16,9 +16,8 @@
 
 <div class="preview-wrapper">
   <app-picture-form
-    *ngFor="let item of previewUrls; index as i"
-    pictureBase64="{{ item }}"
-    index="{{ i }}">
+    *ngFor="let item of Pictures; index as i"
+    picture="{{ item }}">
 
     <!-- Increase value of i -->
     <ng-template *ngIf="false">{{ i+1 }}</ng-template>
@@ -26,4 +25,4 @@
 </div>
 
 
-<button class="float-upload popup" mat-fab (click)="uploadImages()" *ngIf="previewUrls.length !== 0"><mat-icon>publish</mat-icon></button>
+<button class="float-upload popup" mat-fab (click)="uploadImages()" *ngIf="Pictures.length !== 0"><mat-icon>publish</mat-icon></button>

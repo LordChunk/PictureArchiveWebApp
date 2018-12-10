@@ -3,6 +3,7 @@ import { PictureService } from '../services/picture.service';
 import { MAT_SNACK_BAR_DATA, MatSnackBar, MatSnackBarRef } from '@angular/material';
 import { map, share } from 'rxjs/operators';
 import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
+import { Picture } from './Picture';
 
 @Component({
   selector: 'app-upload-picture',
@@ -16,19 +17,27 @@ export class UploadPictureComponent implements OnInit {
     private snackBar: MatSnackBar,
   ) { }
   selectedFiles: FileList;
-  previewUrls: string[] = [];
+  Pictures: Picture[] = [];
 
   ngOnInit() {
   }
 
   onFileChanged(event) {
+    // Get files
     this.selectedFiles = event.target.files;
 
-    this.previewUrls = [];
+    // Wipe array
+    this.Pictures = [];
 
+    // Set loop int
+    let i = 0;
     Array.from(this.selectedFiles)
       .forEach((file) => {
-        (this.preview(file));
+        // Run preview and push to array
+        this.preview(file, i);
+
+        // Increase array length int
+        i += 1;
       });
   }
 
@@ -45,13 +54,13 @@ export class UploadPictureComponent implements OnInit {
     uploadProgress.subscribe((event: HttpUploadProgressEvent) => {
       if (event.loaded === event.total && event.loaded !== undefined) {
         this.selectedFiles = null;
-        this.previewUrls = [];
+        this.Pictures = [];
       }
     });
   }
 
   // Convert file into Base64 string
-  preview(file): string {
+  preview(file: File, arrayLength: number): string {
     const mimeType = file.type;
     if (mimeType.match(/image\/*/) == null) {
       return 'Only images are supported.';
@@ -64,8 +73,15 @@ export class UploadPictureComponent implements OnInit {
     reader.readAsDataURL(file);
 
     reader.onload = () => {
-      // Put strings into array
-      this.previewUrls.push(reader.result.toString());
+      const picture: Picture = {
+        base64: reader.result.toString(),
+        date: new Date(file.lastModified),
+        index: arrayLength,
+        name: file.name,
+      };
+
+      // Put interface into array
+      this.Pictures.push(picture);
     };
   }
 }

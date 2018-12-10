@@ -3,6 +3,7 @@ import { EventEmitter } from 'events';
 import { FormBuilder } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Picture } from '../Picture';
 
 @Component({
   selector: 'app-picture-form',
@@ -11,8 +12,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 })
 export class PictureFormComponent implements OnInit {
 
-  @Input() index: string;
-  @Input() pictureBase64: string;
+  @Input() picture: Picture;
+  // @Input() index: string;
+  // @Input() pictureBase64: string;
   // @Input() rawPicture: File;
 
   @Output() pictureValueChange = new EventEmitter();
@@ -30,8 +32,9 @@ export class PictureFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.pictureForm.controls['index'].setValue(this.index);
-    // this.pictureForm.controls['picture'].setValue(this.pictureBase64);
+    console.log(this.picture);
+    this.pictureForm.controls['index'].setValue(this.picture.index);
+    this.pictureForm.controls['picture'].setValue(this.picture.base64);
   }
 
   pictureValueChanged() {
