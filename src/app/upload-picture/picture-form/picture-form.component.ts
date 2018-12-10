@@ -13,6 +13,7 @@ export class PictureFormComponent implements OnInit {
 
   @Input() index: string;
   @Input() pictureBase64: string;
+  // @Input() rawPicture: File;
 
   @Output() pictureValueChange = new EventEmitter();
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -23,6 +24,7 @@ export class PictureFormComponent implements OnInit {
     picture: [],
     name: [],
     metaTags: [],
+    datePictureTaken: [],
   });
 
   constructor(private fb: FormBuilder) { }

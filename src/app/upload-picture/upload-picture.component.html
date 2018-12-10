@@ -7,23 +7,23 @@
   #fileInput>
 
 <div class="main-wrapper">
+  <div>
+    <h1>Upload your pictures here</h1>
+    <h4>Your selected images will be displayed below</h4>
+  </div>
   <button mat-raised-button (click)="fileInput.click()" class="upload-button">Select Files</button>
-  
-  <mat-card>
-      <mat-card-title>Selected Images</mat-card-title>
-      <mat-card-subtitle>Your selected images will appear here.</mat-card-subtitle>
-      <mat-card-content class="image-wrapper">
-
-        <div *ngFor="let item of previewUrls; index as i">
-          <app-picture-form
-            pictureBase64="{{ item }}"
-            index="{{ i }}"></app-picture-form>
-          
-          <!-- Increase value of i -->
-          <ng-template *ngIf="false">{{ i+1 }}</ng-template>
-        </div>
-      </mat-card-content>
-  </mat-card>
 </div>
+
+<div class="preview-wrapper">
+  <app-picture-form
+    *ngFor="let item of previewUrls; index as i"
+    pictureBase64="{{ item }}"
+    index="{{ i }}">
+
+    <!-- Increase value of i -->
+    <ng-template *ngIf="false">{{ i+1 }}</ng-template>
+  </app-picture-form>
+</div>
+
 
 <button class="float-upload popup" mat-fab (click)="uploadImages()" *ngIf="previewUrls.length !== 0"><mat-icon>publish</mat-icon></button>

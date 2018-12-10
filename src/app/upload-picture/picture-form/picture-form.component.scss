@@ -1,0 +1,36 @@
+img {
+  // Make sure all image aspect ratios are shown correctly
+  max-height: 300px;
+  max-width: 300px;
+  width: auto;
+  height: auto;
+
+  // Center image horizontally
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Make all cards the same size
+// 30 px is margin between grid items
+mat-card {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+}
+
+// Undo footer styling
+.mat-card-footer {
+  margin: unset;
+}
+
+// Make all form fields use the full view width avaible
+mat-form-field {
+  width: -webkit-fill-available;
+}
+
+// Add room in between elements when switching to display: flex for mobile
+@media (max-width: 800px) {
+  :host() {
+    margin-bottom: 30px;
+  }
+}

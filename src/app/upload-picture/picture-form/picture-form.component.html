@@ -1,27 +1,44 @@
-<img src="{{ pictureBase64 }}" alt="">
-<p>index: {{ index }}</p>
-<form [formGroup]="pictureForm">
-    <mat-form-field>
-        <input matInput placeholder="Name" formControlName="name">
-    </mat-form-field>
-
-    <mat-form-field>
+<mat-card>
+  <form [formGroup]="pictureForm">
+    <mat-card-title>
+      <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+    </mat-card-title>
+    <img
+      mat-card-image
+      src="{{ pictureBase64 }}"
+      alt="">
+    <div class="spacer"></div>
+    <mat-card-footer>
+      <mat-form-field>
         <mat-chip-list #metaTagChips>
-            <mat-chip 
-                *ngFor="let metaTag of metaTags"
-                (removed)="remove(metaTag)">
-                {{ metaTag }}
-                <mat-icon matChipRemove>cancel</mat-icon>
+          <mat-chip
+            *ngFor="let metaTag of metaTags"
+            (removed)="remove(metaTag)">
+              {{ metaTag }}
+              <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
-        </mat-chip-list>
-        <input 
+          </mat-chip-list>
+          <input
             placeholder="Meta Tags"
             [matChipInputFor]="metaTagChips"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             (matChipInputTokenEnd)="add($event)">
-    </mat-form-field>
-</form>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="pictureTaken"
+            placeholder="Picture Taken At"
+            formControlName="datePictureTaken">
+          <mat-datepicker-toggle matSuffix [for]="pictureTaken"></mat-datepicker-toggle>
+          <mat-datepicker #pictureTaken></mat-datepicker>
+        </mat-form-field>
+    </mat-card-footer>
+  </form>
+</mat-card>
 
-<p>
-    Form Value: {{ pictureForm.value | json }}
-</p>
+<!-- <p>
+  Form Value: {{ pictureForm.value | json }}
+</p> -->
