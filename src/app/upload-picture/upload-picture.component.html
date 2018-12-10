@@ -13,7 +13,15 @@
       <mat-card-title>Selected Images</mat-card-title>
       <mat-card-subtitle>Your selected images will appear here.</mat-card-subtitle>
       <mat-card-content class="image-wrapper">
-        <img *ngFor="let item of previewUrls" src="{{ item }}" alt="">
+
+        <div *ngFor="let item of previewUrls; index as i">
+          <app-picture-form
+            pictureBase64="{{ item }}"
+            index="{{ i }}"></app-picture-form>
+          
+          <!-- Increase value of i -->
+          <ng-template *ngIf="false">{{ i+1 }}</ng-template>
+        </div>
       </mat-card-content>
   </mat-card>
 </div>

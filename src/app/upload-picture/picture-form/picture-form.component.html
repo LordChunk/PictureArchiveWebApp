@@ -1,0 +1,27 @@
+<img src="{{ pictureBase64 }}" alt="">
+<p>index: {{ index }}</p>
+<form [formGroup]="pictureForm">
+    <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-chip-list #metaTagChips>
+            <mat-chip 
+                *ngFor="let metaTag of metaTags"
+                (removed)="remove(metaTag)">
+                {{ metaTag }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+        </mat-chip-list>
+        <input 
+            placeholder="Meta Tags"
+            [matChipInputFor]="metaTagChips"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+    </mat-form-field>
+</form>
+
+<p>
+    Form Value: {{ pictureForm.value | json }}
+</p>
