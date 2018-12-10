@@ -13,11 +13,9 @@ import { Picture } from '../Picture';
 export class PictureFormComponent implements OnInit {
 
   @Input() picture: Picture;
-  // @Input() index: string;
-  // @Input() pictureBase64: string;
-  // @Input() rawPicture: File;
 
   @Output() pictureValueChange = new EventEmitter();
+
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   metaTags: string[] = [];
 
@@ -33,8 +31,11 @@ export class PictureFormComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.picture);
-    this.pictureForm.controls['index'].setValue(this.picture.index);
-    this.pictureForm.controls['picture'].setValue(this.picture.base64);
+    const pControls = this.pictureForm.controls;
+    pControls['index'].setValue(this.picture.index);
+    pControls['name'].setValue(this.picture.name);
+    pControls['datePictureTaken'].setValue(this.picture.date);
+    pControls['picture'].setValue(this.picture.base64);
   }
 
   pictureValueChanged() {

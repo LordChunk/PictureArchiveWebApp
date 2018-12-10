@@ -73,11 +73,16 @@ export class UploadPictureComponent implements OnInit {
     reader.readAsDataURL(file);
 
     reader.onload = () => {
+      // Parse date number to ISO string without time stamp
+      const dateString = new Date(file.lastModified)
+        .toISOString()
+        .replace(/T[^]+$/, '');
+
       const picture: Picture = {
         base64: reader.result.toString(),
-        date: new Date(file.lastModified),
+        date: dateString,
         index: arrayLength,
-        name: file.name,
+        name: file.name.replace(/\.[^/.]+$/, ''), // Remove file extension with REGEX
       };
 
       // Put interface into array
