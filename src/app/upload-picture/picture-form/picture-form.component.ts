@@ -24,10 +24,10 @@ export class PictureFormComponent implements OnInit {
   ngOnInit() {
     this.pictureForm = this.fb.group({
       index: [],
-      picture: [],
+      base64: [],
       name: [],
       metaTags: [],
-      datePictureTaken: [],
+      date: [],
       // destroyed: [false],
     });
 
@@ -35,11 +35,11 @@ export class PictureFormComponent implements OnInit {
     const pControls = this.pictureForm.controls;
     pControls['index'].setValue(this.picture.index);
     pControls['name'].setValue(this.picture.name);
-    pControls['datePictureTaken'].setValue(this.picture.date);
-    pControls['picture'].setValue(this.picture.base64);
+    pControls['date'].setValue(this.picture.date);
+    pControls['base64'].setValue(this.picture.base64);
 
     // Emit original create event
-    this.pictureValueChange.emit(this.pictureForm.value);
+    // this.pictureValueChange.emit(this.pictureForm.value);
 
     // Create value change subscriber
     this.formValueChangeEvent();
@@ -47,6 +47,7 @@ export class PictureFormComponent implements OnInit {
 
   formValueChangeEvent(): void {
     this.pictureForm.valueChanges.subscribe((val) => {
+      // console.log(val);
       this.pictureValueChange.emit(val);
     });
   }

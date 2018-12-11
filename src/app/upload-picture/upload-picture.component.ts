@@ -28,13 +28,13 @@ export class UploadPictureComponent implements OnInit {
   }
 
   // Event triggered by child components
-  updatePictureList(event) {
+  updatePictureList(event: Picture) {
     console.log(event);
     const pic = new Picture();
     pic.index = event.index;
-    pic.base64 = event.picture;
+    pic.base64 = event.base64;
     pic.name = event.name;
-    pic.date = event.datePictureTaken;
+    pic.date = event.date;
     pic.metaTags = event.metaTags;
 
     this.UploadablePictures.splice(event.index, 1, pic);
@@ -89,8 +89,9 @@ export class UploadPictureComponent implements OnInit {
         metaTags: [],
       };
 
-      // Put interface into array
+      // Put class into array
       this.Pictures.push(picture);
+      this.UploadablePictures.push(picture);
     };
   }
 
