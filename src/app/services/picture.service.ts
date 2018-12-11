@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpSentEvent } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
@@ -13,15 +13,10 @@ export class PictureService {
   constructor(private http: HttpClient) { }
 
   public upload(files: Picture[]): Observable<HttpEvent<HttpUploadProgressEvent>> {
-    const uploadData = new FormData();
 
-    let i = 0;
-    Array.from(files).forEach((file) => {
-      uploadData.append(i.toString(), file);
-      i += 1;
-    });
+    console.log(JSON.stringify(files));
 
-    return this.http.post<any>(`${environment.apiUri}/picture/upload`, uploadData, {
+    return this.http.post<any>(`${environment.apiUri}/picture/upload`, JSON.stringify(files), {
       reportProgress: true,
       observe: 'events',
     }).pipe();

@@ -96,7 +96,7 @@ export class UploadPictureComponent implements OnInit {
 
   uploadImages() {
     // Upload picture and save progress to observable
-    const uploadProgress = this.pictureService.upload(this.selectedFiles).pipe(share());
+    const uploadProgress = this.pictureService.upload(this.UploadablePictures).pipe(share());
 
     // Create snackbar with observable for progress bar
     this.snackBar.openFromComponent(UploadProgressComponent, {
