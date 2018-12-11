@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { EventEmitter } from 'events';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Picture } from '../Picture';
@@ -18,29 +17,44 @@ export class PictureFormComponent implements OnInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   metaTags: string[] = [];
-
-  pictureForm = this.fb.group({
-    index: [],
-    picture: [],
-    name: [],
-    metaTags: [],
-    datePictureTaken: [],
-  });
+  pictureForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    console.log(this.picture);
+    this.pictureForm = this.fb.group({
+      index: [],
+      picture: [],
+      name: [],
+      metaTags: [],
+      datePictureTaken: [],
+      // destroyed: [false],
+    });
+
+    // console.log(this.picture);
     const pControls = this.pictureForm.controls;
     pControls['index'].setValue(this.picture.index);
     pControls['name'].setValue(this.picture.name);
     pControls['datePictureTaken'].setValue(this.picture.date);
     pControls['picture'].setValue(this.picture.base64);
+
+    // Emit original create event
+    this.pictureValueChange.emit(this.pictureForm.value);
+
+    // Create value change subscriber
+    this.formValueChangeEvent();
   }
 
-  pictureValueChanged() {
-    this.pictureValueChange.emit(JSON.stringify(this.pictureForm.value));
+  formValueChangeEvent(): void {
+    this.pictureForm.valueChanges.subscribe((val) => {
+      this.pictureValueChange.emit(val);
+    });
   }
+
+  // ngOnDestroy(): void {
+  //   this.pictureForm.controls['destroyed'].setValue(true);
+  //   this.formValueChangeEvent();
+  // }
 
   add(event: MatChipInputEvent): void {
     const input = event.input;

@@ -17,7 +17,8 @@
 <div class="preview-wrapper">
   <app-picture-form
     *ngFor="let item of Pictures; index as i"
-    [picture]="item">
+    [picture]="item"
+    (pictureValueChange)='updatePictureList($event)'>
 
     <!-- Increase value of i -->
     <ng-template *ngIf="false">{{ i+1 }}</ng-template>

@@ -16,18 +16,30 @@ export class UploadPictureComponent implements OnInit {
     private pictureService: PictureService,
     private snackBar: MatSnackBar,
   ) { }
+
+  // List of pictures from orignal file input
   selectedFiles: FileList;
+  // List of pictures to create components with
   Pictures: Picture[] = [];
+  // List of picture data returned from components
+  UploadablePictures: Picture[] = [];
 
   ngOnInit() {
+  }
+
+  updatePictureList(event: Picture) {
+    this.UploadablePictures.splice(event.index, 1, event);
+
+    console.log(this.UploadablePictures);
   }
 
   onFileChanged(event) {
     // Get files
     this.selectedFiles = event.target.files;
 
-    // Wipe array
+    // Wipe arrays
     this.Pictures = [];
+    this.UploadablePictures = [];
 
     // Set loop int
     let i = 0;
@@ -39,24 +51,6 @@ export class UploadPictureComponent implements OnInit {
         // Increase array length int
         i += 1;
       });
-  }
-
-  uploadImages() {
-    // Upload picture and save progress to observable
-    const uploadProgress = this.pictureService.upload(this.selectedFiles).pipe(share());
-
-    // Create snackbar with observable for progress bar
-    this.snackBar.openFromComponent(UploadProgressComponent, {
-      data: { uploadProgress },
-    });
-
-    // Wait for uploading to be finished and then clear selected files and preview URLs
-    uploadProgress.subscribe((event: HttpUploadProgressEvent) => {
-      if (event.loaded === event.total && event.loaded !== undefined) {
-        this.selectedFiles = null;
-        this.Pictures = [];
-      }
-    });
   }
 
   // Convert file into Base64 string
@@ -89,6 +83,26 @@ export class UploadPictureComponent implements OnInit {
       this.Pictures.push(picture);
     };
   }
+
+  uploadImages() {
+    // Upload picture and save progress to observable
+    const uploadProgress = this.pictureService.upload(this.selectedFiles).pipe(share());
+
+    // Create snackbar with observable for progress bar
+    this.snackBar.openFromComponent(UploadProgressComponent, {
+      data: { uploadProgress },
+    });
+
+    // Wait for uploading to be finished and then clear selected files and preview URLs
+    uploadProgress.subscribe((event: HttpUploadProgressEvent) => {
+      if (event.loaded === event.total && event.loaded !== undefined) {
+        this.selectedFiles = null;
+        this.Pictures = [];
+        this.UploadablePictures = [];
+      }
+    });
+  }
+
 }
 
 @Component({
