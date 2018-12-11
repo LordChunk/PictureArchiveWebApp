@@ -15,7 +15,9 @@ export class AuthInterceptor implements HttpInterceptor {
     if (idToken) {
       const cloned = req.clone({
         headers: req.headers.set('Authorization',
-                                 `Bearer ${idToken}`),
+                                 `Bearer ${idToken}`)
+                            // Always send requests as JSON
+                            .set('Content-Type', 'application/json; charset=utf-8'),
       });
 
       return next.handle(cloned);
