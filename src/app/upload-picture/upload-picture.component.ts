@@ -27,8 +27,17 @@ export class UploadPictureComponent implements OnInit {
   ngOnInit() {
   }
 
-  updatePictureList(event: Picture) {
-    this.UploadablePictures.splice(event.index, 1, event);
+  // Event triggered by child components
+  updatePictureList(event) {
+    console.log(event);
+    const pic = new Picture();
+    pic.index = event.index;
+    pic.base64 = event.picture;
+    pic.name = event.name;
+    pic.date = event.datePictureTaken;
+    pic.metaTags = event.metaTags;
+
+    this.UploadablePictures.splice(event.index, 1, pic);
 
     console.log(this.UploadablePictures);
   }
@@ -77,6 +86,7 @@ export class UploadPictureComponent implements OnInit {
         date: dateString,
         index: arrayLength,
         name: file.name.replace(/\.[^/.]+$/, ''), // Remove file extension with REGEX
+        metaTags: [],
       };
 
       // Put interface into array

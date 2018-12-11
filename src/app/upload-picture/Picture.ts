@@ -3,4 +3,5 @@ export class Picture {
   name: string;
   base64: string;
   date: string;
+  metaTags: string[];
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpEvent, HttpSentEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
+import { Picture } from '../upload-picture/picture';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class PictureService {
 
   constructor(private http: HttpClient) { }
 
-  public upload(files: FileList): Observable<HttpEvent<HttpUploadProgressEvent>> {
+  public upload(files: Picture[]): Observable<HttpEvent<HttpUploadProgressEvent>> {
     const uploadData = new FormData();
 
     let i = 0;
