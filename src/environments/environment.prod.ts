@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUri: 'https://api.chu.mk',
+  apiUri: 'https://picturearchive1.azurewebsites.net',
 };

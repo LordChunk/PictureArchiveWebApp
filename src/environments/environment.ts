@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUri: 'https://api.chu.mk',
+  apiUri: 'https://picturearchive1.azurewebsites.net',
 };
 
 /*
