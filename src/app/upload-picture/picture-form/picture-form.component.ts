@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Picture } from '../picture';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-picture-form',

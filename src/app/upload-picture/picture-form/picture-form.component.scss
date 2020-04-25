@@ -30,7 +30,7 @@ mat-form-field {
 
 // Add room in between elements when switching to display: flex for mobile
 @media (max-width: 800px) {
-  :host() {
+  :host {
     margin-bottom: 30px;
   }
 }

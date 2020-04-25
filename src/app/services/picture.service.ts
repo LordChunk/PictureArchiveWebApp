@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpUploadProgressEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
 import { Picture } from '../upload-picture/picture';
 
 @Injectable({
