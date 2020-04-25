@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { PictureService } from '../services/picture.service';
-import { MAT_SNACK_BAR_DATA, MatSnackBar, MatSnackBarRef } from '@angular/material';
 import { map, share } from 'rxjs/operators';
-import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
 import { Picture } from './picture';
+import { HttpUploadProgressEvent } from '@angular/common/http';
+import { MatSnackBar, MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-upload-picture',
