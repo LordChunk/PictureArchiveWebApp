@@ -13,5 +13,3 @@ deploy:
   skip_cleanup: true
   provider: script
   script: firebase deploy --token ${FIREBASE_TOKEN}
-  on:
-    branch: patch/travis-builds
