@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Observable, from, ReplaySubject, BehaviorSubject } from 'rxjs';
