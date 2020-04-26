@@ -10,8 +10,8 @@
   </mat-form-field>
 
   <div class="buttons">
-    <button mat-raised-button (click)="login()" *ngIf="(authService.user | async) == null">Login</button>
-    <button mat-raised-button (click)="register()" *ngIf="(authService.user | async) == null">Register</button>
-    <button mat-raised-button (click)="logout()" *ngIf="authService.user | async">Logout</button>
+    <button mat-raised-button (click)="login()" *ngIf="(authService.user | async) === null">Login</button>
+    <button mat-raised-button (click)="register()" *ngIf="(authService.user | async) === null">Register</button>
+    <button mat-raised-button (click)="logout()" *ngIf="(authService.user | async) !== null">Logout</button>
   </div>
 </form>
