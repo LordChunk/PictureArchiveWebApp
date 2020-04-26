@@ -13,6 +13,21 @@
           "destination": "/index.html"
         }
       ]
+    },
+    {
+      "target": "PictureArchiveWebApp",
+      "public": "dist/PictureArchiveWebApp",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }

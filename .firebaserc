@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "images-chu-mk"
+  },
+  "targets": {
+    "images-chu-mk": {
+      "hosting": {
+        "PictureArchiveWebApp": [
+          "images-chu-mk"
+        ]
+      }
+    }
   }
 }
