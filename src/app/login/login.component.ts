@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -21,8 +22,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.credentialsForm = this.formBuilder.group({
-      email: [{ value: 'something@mail.com', disabled: this.authService.isLoggedIn() }],
-      password: [{ value: 'sexyAnd@securePass12', disabled: this.authService.isLoggedIn() }],
+      email: [{ value: 'something@mail.com', disabled: false }],
+      password: [{ value: 'sexyAnd@securePass12', disabled: false }],
     });
   }
 
@@ -31,10 +32,6 @@ export class LoginComponent implements OnInit {
       this.credentialsForm.value['email'],
       this.credentialsForm.value['password'],
       );
-
-    if (this.authService.isLoggedIn) {
-      this.router.navigate(['/']);
-    }
   }
 
   register() {
@@ -42,15 +39,9 @@ export class LoginComponent implements OnInit {
       this.credentialsForm.value['email'],
       this.credentialsForm.value['password'],
       );
-
-    if (this.authService.isLoggedIn) {
-      this.router.navigate(['/']);
-    }
   }
 
   logout() {
     this.authService.logout();
-
-    this.router.navigate(['/']);
   }
 }
