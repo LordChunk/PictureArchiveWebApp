@@ -1,61 +1,39 @@
-import * as moment from 'moment';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { auth } from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
 
-import { environment } from '../../environments/environment';
+import { Observable, from, ReplaySubject } from 'rxjs';
+import { User } from '../models/user.model';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  private _user: ReplaySubject<User> = new ReplaySubject(1);
+  get user(): Observable<User> {
+    return this._user.pipe(distinctUntilChanged());
+  }
 
-  private jwtHelper = new JwtHelperService();
+  constructor(private auth: AngularFireAuth) {
+    this._user.next(null);
+   }
 
   public login(email: string, password: string) {
-    return this.http.post<any>(`${environment.apiUri}/user/login`, { email, password })
-      .subscribe((data) => {
-        // Set session vars
-        this.setSession(data.token);
-      });
+    const user = from(this.auth.signInWithEmailAndPassword(email, password));
+
+    user.subscribe((userCred) => {
+      this._user.next(userCred.user);
+    });
   }
 
   public register(email: string, password: string) {
-    return this.http.post<any>(`${environment.apiUri}/user/register`, { email, password })
-      .subscribe((data) => {
-        // Set session vars
-        this.setSession(data.token);
-      });
-  }
-
-  private setSession(token) {
-    // console.log(this.jwtHelper.decodeToken(token));
-    const expiresAt = moment().add(this.jwtHelper.decodeToken(token).exp);
-
-    localStorage.setItem('id_token', token);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt));
-    // localStorage.setItem('role', userRole);
+    this.auth.createUserWithEmailAndPassword(email, password);
   }
 
   public logout() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-    // localStorage.removeItem('role');
-  }
-
-  public isLoggedIn(): boolean {
-    // console.log(moment().isBefore(this.getExpiration()));
-    return moment().isBefore(this.getExpiration());
-  }
-
-  public isLoggedOut(): boolean {
-    return !this.isLoggedIn();
-  }
-
-  private getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    this.auth.signOut().then(() => {
+      this._user.next(null);
+    });
   }
 }
