@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { Observable, from, ReplaySubject } from 'rxjs';
+import { Observable, from, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { User } from '../models/user.model';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -9,13 +9,24 @@ import { distinctUntilChanged } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  private _user: ReplaySubject<User> = new ReplaySubject(1);
+  private _user: BehaviorSubject<User> = new BehaviorSubject(null);
   get user(): Observable<User> {
     return this._user.pipe(distinctUntilChanged());
   }
 
   constructor(private auth: AngularFireAuth) {
-    this._user.next(null);
+    this.auth.authState.subscribe((user) => {
+      if (user) {
+        const publicUser: User = {
+          email: user.email,
+          uid: user.uid,
+        };
+
+        this._user.next(publicUser);
+      } else {
+        this._user.next(null);
+      }
+    });
   }
 
   public login(email: string, password: string) {
@@ -31,8 +42,6 @@ export class AuthService {
   }
 
   public logout() {
-    this.auth.signOut().then(() => {
-      this._user.next(null);
-    });
+    this.auth.signOut();
   }
 }
