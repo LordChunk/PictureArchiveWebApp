@@ -1,40 +1,28 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Picture } from '../models/picture.model';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { HttpClient, HttpEvent, HttpUploadProgressEvent } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+import { Picture } from '../upload-picture/picture';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PictureService {
 
-  constructor(
-    private afs: AngularFirestore,
-    private storage: AngularFireStorage,
-    ) { }
+  constructor(private http: HttpClient) { }
 
-  public upload(pictures: Picture[]): Observable<number> {
-    const uploadProgress = of(0);
+  public upload(files: Picture[]): Observable<HttpEvent<HttpUploadProgressEvent>> {
 
-    const pictureCollection = this.afs.collection<Picture>('picture');
-    pictures.forEach((picture) => {
-      const fileExtension = picture.fileType.split('/').pop();
-      const rawBase64 = picture.base64.split(';base64,').pop();
+    console.log(JSON.stringify(files));
 
-      pictureCollection.add(picture)
-        .then((ref) => {
-          this.storage.ref(`picture/${ref.id}.${fileExtension}`)
-            .putString(rawBase64, 'base64', { contentType: `${picture.fileType}` });
-        });
-    });
-
-    return uploadProgress;
+    return this.http.post<any>(`${environment.apiUri}/picture/upload`, JSON.stringify(files), {
+      reportProgress: true,
+      observe: 'events',
+    }).pipe();
   }
 
-  public getPictureRefs(amount?: number, offset: number = 0)/*: Observable<string[]>*/ {
-    return of([]);
+  public getPictureRefs(amount?: number, offset: number = 0): Observable<string[]> {
     // Request data and return as observable
-    // return this.http.get<string[]>(`${environment.apiUri}/picture/?amount=${amount}&offset=${offset}`).pipe();
+    return this.http.get<string[]>(`${environment.apiUri}/picture/?amount=${amount}&offset=${offset}`).pipe();
   }
 }

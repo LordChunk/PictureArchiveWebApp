@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { PictureService } from '../services/picture.service';
 import { map, share } from 'rxjs/operators';
-import { Picture } from '../models/picture.model';
+import { Picture } from './picture';
 import { HttpUploadProgressEvent } from '@angular/common/http';
 import { MatSnackBar, MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-upload-picture',
@@ -35,7 +34,7 @@ export class UploadPictureComponent implements OnInit {
     pic.index = event.index;
     pic.base64 = event.base64;
     pic.name = event.name;
-    pic.dateTaken = event.dateTaken;
+    pic.date = event.date;
     pic.metaTags = event.metaTags;
 
     this.UploadablePictures.splice(event.index, 1, pic);
@@ -77,14 +76,17 @@ export class UploadPictureComponent implements OnInit {
     reader.readAsDataURL(file);
 
     reader.onload = () => {
+      // Parse date number to ISO string without time stamp
+      const dateString = new Date(file.lastModified)
+        .toISOString()
+        .replace(/T[^]+$/, '');
+
       const picture: Picture = {
         base64: reader.result.toString(),
-        dateTaken: new Date(file.lastModified),
-        dateUploaded: new Date(), // Might replace this with a server-side timestamp at some point
+        date: dateString,
         index: arrayLength,
         name: file.name.replace(/\.[^/.]+$/, ''), // Remove file extension with REGEX
         metaTags: [],
-        fileType: file.type,
       };
 
       // Put class into array
@@ -94,17 +96,17 @@ export class UploadPictureComponent implements OnInit {
   }
 
   uploadImages() {
-    // // Upload picture and save progress to observable
-    const uploadTask = this.pictureService.upload(this.UploadablePictures).pipe(share());
+    // Upload picture and save progress to observable
+    const uploadProgress = this.pictureService.upload(this.UploadablePictures).pipe(share());
 
     // Create snackbar with observable for progress bar
     this.snackBar.openFromComponent(UploadProgressComponent, {
-      data: { uploadTask },
+      data: { uploadProgress },
     });
 
     // Wait for uploading to be finished and then clear selected files and preview URLs
-    uploadTask.subscribe((uploadProgress) => {
-      if (uploadProgress === 100) {
+    uploadProgress.subscribe((event: HttpUploadProgressEvent) => {
+      if (event.loaded === event.total && event.loaded !== undefined) {
         this.selectedFiles = null;
         this.Pictures = [];
         this.UploadablePictures = [];
@@ -121,24 +123,35 @@ export class UploadPictureComponent implements OnInit {
   <mat-progress-bar mode="determinate" [value]="progress | async" *ngIf="progress !== undefined"></mat-progress-bar>`,
   styles: [`mat-progress-bar { margin-top: 5px;}`],
 })
-export class UploadProgressComponent implements OnInit {
+export class UploadProgressComponent {
   constructor(
     @Inject(MAT_SNACK_BAR_DATA) public data,
     private _snackRef: MatSnackBarRef<UploadProgressComponent>,
-  ) {
-    this.progress = data.uploadTask;
-  }
-  public progress: Observable<number>;
+    ) { }
 
-  ngOnInit() {
-    this.progress.subscribe(
-      (value) => {
-        if (value === 100) {
-          this._snackRef.dismiss();
-        }
-      },
-      () => {
+  private started = false;
+
+  // Save progress percentage as variable
+  public progress = this.data.uploadProgress.pipe(
+    map(({ loaded, total }) => {
+
+      // Chronological if statement
+      if (loaded === undefined && !this.started) {
+        // Uploading hasn't started so return 0 progress
+        return 0;
+      // tslint:disable-next-line:no-else-after-return
+      } else if (loaded !== undefined) {
+        // Uploading has started
+        this.started = true;
+
+        // Convert progress to percentage and then to an integer
+        return Math.round(loaded / (total || loaded) * 100);
+      } else {
+
+        // Uploading has finished
+        // Destroying element
         this._snackRef.dismiss();
-      });
-  }
+      }
+    },
+  ));
 }
