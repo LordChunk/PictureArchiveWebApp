@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Observable, from, ReplaySubject } from 'rxjs';
@@ -17,7 +16,7 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth) {
     this._user.next(null);
-   }
+  }
 
   public login(email: string, password: string) {
     const user = from(this.auth.signInWithEmailAndPassword(email, password));
