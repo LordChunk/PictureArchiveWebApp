@@ -32,7 +32,6 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     ListPictureModule,
     AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestore,
     AngularFireStorageModule,
   ],
   bootstrap: [AppComponent],
