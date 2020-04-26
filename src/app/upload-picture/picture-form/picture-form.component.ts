@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Picture } from '../../models/picture.model';
+import { Picture } from '../picture';
 import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
@@ -35,7 +35,7 @@ export class PictureFormComponent implements OnInit {
     const pControls = this.pictureForm.controls;
     pControls['index'].setValue(this.picture.index);
     pControls['name'].setValue(this.picture.name);
-    pControls['date'].setValue(this.picture.dateTaken);
+    pControls['date'].setValue(this.picture.date);
     pControls['base64'].setValue(this.picture.base64);
 
     // Emit original create event
