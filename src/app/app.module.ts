@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
+// import { AngularFirestore } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,9 +13,8 @@ import { LoginModule } from './login/login.module';
 import { UploadPictureModule } from './upload-picture/upload-picture.module';
 import { ListPictureModule } from './list-picture/list-picture.module';
 
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
-import { AuthInterceptor } from './services/AuthInterceptor';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -31,14 +32,12 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     ListPictureModule,
     AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestore,
+    AngularFireStorageModule,
   ],
   bootstrap: [AppComponent],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true,
-    // },
+    { provide: BUCKET, useValue: environment.firebase.storageBucket },
   ],
 })
 export class AppModule { }
