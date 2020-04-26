@@ -133,7 +133,7 @@ export class UploadProgressComponent implements OnInit {
   ngOnInit() {
     this.progress.subscribe(
       (value) => {
-        if (value === 100) {
+        if (value >= 100) {
           this._snackRef.dismiss();
         }
       },

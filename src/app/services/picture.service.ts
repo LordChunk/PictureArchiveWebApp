@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { of, Observable, BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Picture } from '../models/picture.model';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -15,7 +15,8 @@ export class PictureService {
     ) { }
 
   public upload(pictures: Picture[]): Observable<number> {
-    const uploadProgress = of(0);
+    const allPercentages = new BehaviorSubject([]);
+    const averageProgress = new BehaviorSubject(0);
 
     const pictureCollection = this.afs.collection<Picture>('picture');
     pictures.forEach((picture) => {
@@ -24,12 +25,33 @@ export class PictureService {
 
       pictureCollection.add(picture)
         .then((ref) => {
-          this.storage.ref(`picture/${ref.id}.${fileExtension}`)
+          const uploadTask = this.storage.ref(`picture/${ref.id}.${fileExtension}`)
             .putString(rawBase64, 'base64', { contentType: `${picture.fileType}` });
+
+          // update percentages
+          uploadTask.percentageChanges().subscribe(
+            (newPercentage) => {
+              const currentValues = allPercentages.getValue();
+              currentValues[picture.index] = newPercentage;
+              allPercentages.next(currentValues);
+            },
+            // Delete reference on error
+            () => {
+              pictureCollection.doc(ref.id).delete();
+            });
         });
     });
 
-    return uploadProgress;
+    allPercentages.subscribe((percentages) => {
+      let totalSumOfPercentages = 0;
+      percentages.forEach(percentage => totalSumOfPercentages = totalSumOfPercentages + percentage);
+
+      averageProgress.next(totalSumOfPercentages / pictures.length + 1);
+    });
+
+    averageProgress.subscribe(console.log);
+
+    return averageProgress;
   }
 
   public getPictureRefs(amount?: number, offset: number = 0)/*: Observable<string[]>*/ {
