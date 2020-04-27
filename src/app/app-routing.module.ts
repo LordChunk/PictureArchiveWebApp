@@ -6,12 +6,13 @@ import { LoginComponent } from './login/login.component';
 import { UploadPictureComponent } from './upload-picture/upload-picture.component';
 import { ListPictureComponent } from './list-picture/list-picture.component';
 import { NotFoundComponent } from './navfooter/not-found/not-found.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'upload', component: UploadPictureComponent },
-  { path: 'view', component: ListPictureComponent },
+  { path: 'upload', component: UploadPictureComponent, canActivate: [AuthGuard] },
+  { path: 'view', component: ListPictureComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent },
 ];
 
