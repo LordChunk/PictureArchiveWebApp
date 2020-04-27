@@ -30,5 +30,7 @@ export class ListPictureComponent implements OnInit {
     //     this.ImageLinks = data;
     //   });
     // this.ImageLinks = this.pictureService.getPictureRefs(10).pipe();
+
+    this.ImageLinks = this.pictureService.getPictureRefs();
   }
 }

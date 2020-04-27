@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Picture } from '../models/picture.model';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { PictureDocument } from './pictureDocument.model';
+import { AuthService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -64,9 +65,9 @@ export class PictureService {
     return averageProgress;
   }
 
-  public getPictureRefs(amount?: number, offset: number = 0)/*: Observable<string[]>*/ {
-    return of([]);
-    // Request data and return as observable
-    // return this.http.get<string[]>(`${environment.apiUri}/picture/?amount=${amount}&offset=${offset}`).pipe();
+  public getPictureRefs(amount?: number, offset: number = 0): Observable<PictureDocument[]> {
+    const pictureCollection = this.afs.collection<PictureDocument>('picture');
+
+    return pictureCollection.valueChanges();
   }
 }
