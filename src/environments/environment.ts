@@ -14,6 +14,7 @@ export const environment = {
     messagingSenderId: '26394416274',
     appId: '1:26394416274:web:bff9348aac857dfafb024b',
   },
+  appName: 'Picture Archive',
 };
 
 /*

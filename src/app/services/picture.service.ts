@@ -3,6 +3,7 @@ import { of, Observable, BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Picture } from '../models/picture.model';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { PictureDocument } from './pictureDocument.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,21 +19,29 @@ export class PictureService {
     const allPercentages = new BehaviorSubject([]);
     const averageProgress = new BehaviorSubject(0);
 
-    const pictureCollection = this.afs.collection<Picture>('picture');
-    pictures.forEach((picture) => {
-      const fileExtension = picture.fileType.split('/').pop();
-      const rawBase64 = picture.base64.split(';base64,').pop();
+    const pictureCollection = this.afs.collection<PictureDocument>('picture');
+    pictures.forEach(({ index, fileType, base64, dateTaken, dateUploaded, metaTags }: Picture) => {
+      console.log(fileType);
+      const fileExtension = fileType.split('/').pop();
+      const rawBase64 = base64.split(';base64,').pop();
 
-      pictureCollection.add(picture)
+      const pictureDocument: PictureDocument = {
+        fileType,
+        dateTaken,
+        dateUploaded,
+        metaTags,
+      };
+
+      pictureCollection.add(pictureDocument)
         .then((ref) => {
           const uploadTask = this.storage.ref(`picture/${ref.id}.${fileExtension}`)
-            .putString(rawBase64, 'base64', { contentType: `${picture.fileType}` });
+            .putString(rawBase64, 'base64', { contentType: `${fileType}` });
 
           // update percentages
           uploadTask.percentageChanges().subscribe(
             (newPercentage) => {
               const currentValues = allPercentages.getValue();
-              currentValues[picture.index] = newPercentage;
+              currentValues[index] = newPercentage;
               allPercentages.next(currentValues);
             },
             // Delete reference on error

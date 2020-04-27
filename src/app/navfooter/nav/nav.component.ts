@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { AppComponent } from 'src/app/app.component';
 import { NAVITEMS } from '../../app-routing.module';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +12,7 @@ export class NavComponent {
   // Set as property so it can be used in html file
   navItems = NAVITEMS;
   // Import global vars
-  newAppComponent: AppComponent = new AppComponent();
+  appName = environment.appName;
 
   // Navigation JS stuff
   mobileQuery: MediaQueryList;
