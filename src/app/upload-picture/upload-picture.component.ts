@@ -30,17 +30,15 @@ export class UploadPictureComponent implements OnInit {
 
   // Event triggered by child components
   updatePictureList(event: Picture) {
-    console.log(event);
-    const pic = new Picture();
-    pic.index = event.index;
-    pic.base64 = event.base64;
+    // console.log(event);
+    const pic = this.UploadablePictures[event.index];
+
     pic.name = event.name;
-    pic.dateTaken = event.dateTaken;
     pic.metaTags = event.metaTags;
 
     this.UploadablePictures.splice(event.index, 1, pic);
 
-    console.log(this.UploadablePictures);
+    // console.log(this.UploadablePictures);
   }
 
   onFileChanged(event) {
@@ -98,13 +96,14 @@ export class UploadPictureComponent implements OnInit {
     const uploadTask = this.pictureService.upload(this.UploadablePictures).pipe(share());
 
     // Create snackbar with observable for progress bar
+    // tslint:disable-next-line: no-use-before-declare
     this.snackBar.openFromComponent(UploadProgressComponent, {
       data: { uploadTask },
     });
 
     // Wait for uploading to be finished and then clear selected files and preview URLs
     uploadTask.subscribe((uploadProgress) => {
-      if (uploadProgress === 100) {
+      if (uploadProgress >= 100) {
         this.selectedFiles = null;
         this.Pictures = [];
         this.UploadablePictures = [];
