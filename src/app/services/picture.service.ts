@@ -20,12 +20,13 @@ export class PictureService {
     const averageProgress = new BehaviorSubject(0);
 
     const pictureCollection = this.afs.collection<PictureDocument>('picture');
-    pictures.forEach(({ index, fileType, base64, dateTaken, dateUploaded, metaTags }: Picture) => {
+    pictures.forEach(({ name, index, fileType, base64, dateTaken, dateUploaded, metaTags }: Picture) => {
       console.log(fileType);
       const fileExtension = fileType.split('/').pop();
       const rawBase64 = base64.split(';base64,').pop();
 
       const pictureDocument: PictureDocument = {
+        name,
         fileType,
         dateTaken,
         dateUploaded,

@@ -30,14 +30,15 @@ export class UploadPictureComponent implements OnInit {
 
   // Event triggered by child components
   updatePictureList(event: Picture) {
-    console.log(event);
+    // console.log(event);
     const pic = this.UploadablePictures[event.index];
 
+    pic.name = event.name;
     pic.metaTags = event.metaTags;
 
     this.UploadablePictures.splice(event.index, 1, pic);
 
-    console.log(this.UploadablePictures);
+    // console.log(this.UploadablePictures);
   }
 
   onFileChanged(event) {
