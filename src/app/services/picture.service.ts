@@ -25,8 +25,10 @@ export class PictureService {
       console.log(fileType);
       const fileExtension = fileType.split('/').pop();
       const rawBase64 = base64.split(';base64,').pop();
+      const uid = this.afs.createId();
 
       const pictureDocument: PictureDocument = {
+        uid,
         name,
         fileType,
         dateTaken,
@@ -34,9 +36,9 @@ export class PictureService {
         metaTags,
       };
 
-      pictureCollection.add(pictureDocument)
+      pictureCollection.doc(uid).set(pictureDocument)
         .then((ref) => {
-          const uploadTask = this.storage.ref(`picture/${ref.id}.${fileExtension}`)
+          const uploadTask = this.storage.ref(`picture/${uid}.${fileExtension}`)
             .putString(rawBase64, 'base64', { contentType: `${fileType}` });
 
           // update percentages
@@ -48,7 +50,7 @@ export class PictureService {
             },
             // Delete reference on error
             () => {
-              pictureCollection.doc(ref.id).delete();
+              pictureCollection.doc(uid).delete();
             });
         });
     });
@@ -69,5 +71,11 @@ export class PictureService {
     const pictureCollection = this.afs.collection<PictureDocument>('picture');
 
     return pictureCollection.valueChanges();
+  }
+
+  public downloadPicture(refId: string, fileType: string): Observable<string> {
+    const fileExtension = fileType.split('/').pop();
+
+    return this.storage.ref(`picture/${refId}.${fileExtension}`).getDownloadURL();
   }
 }
