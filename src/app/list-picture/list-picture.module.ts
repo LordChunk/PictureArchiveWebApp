@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListPictureComponent } from './list-picture.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MaterialModule } from '../material/material.module';
+import { PictureFrameComponent } from './picture-frame/picture-frame.component';
 
 @NgModule({
   imports: [
@@ -10,6 +11,6 @@ import { MaterialModule } from '../material/material.module';
     ScrollingModule,
     MaterialModule,
   ],
-  declarations: [ListPictureComponent],
+  declarations: [ListPictureComponent, PictureFrameComponent],
 })
 export class ListPictureModule { }

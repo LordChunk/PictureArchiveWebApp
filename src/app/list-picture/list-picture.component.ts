@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PictureService } from '../services/picture.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { PictureDocument } from '../services/pictureDocument.model';
 
 @Component({
   selector: 'app-list-picture',
@@ -16,7 +16,7 @@ export class ListPictureComponent implements OnInit {
   @ViewChild(CdkVirtualScrollViewport)
   viewport: CdkVirtualScrollViewport;
 
-  public ImageLinks = this.pictureService.getPictureRefs(40).pipe();
+  public PictureData: Observable<PictureDocument[]>;
 
   handler(event) {
     console.log(event);
@@ -30,5 +30,7 @@ export class ListPictureComponent implements OnInit {
     //     this.ImageLinks = data;
     //   });
     // this.ImageLinks = this.pictureService.getPictureRefs(10).pipe();
+
+    this.PictureData = this.pictureService.getPictureRefs();
   }
 }

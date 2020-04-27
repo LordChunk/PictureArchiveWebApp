@@ -1,14 +1,5 @@
-<cdk-virtual-scroll-viewport
-  itemSize="450"
-  (scrolledIndexChange)="handler($event)">
-
-  <mat-card *cdkVirtualFor="let imageHref of ImageLinks">
-    <mat-card-header>
-      <mat-card-title>Image Name</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
-        <img mat-card-image src="//cdn.chu.mk/{{ imageHref }}" alt="">
-    </mat-card-content>
-  </mat-card>
+<cdk-virtual-scroll-viewport itemSize="450" (scrolledIndexChange)="handler($event)">
+  <ng-container *cdkVirtualFor="let data of PictureData">
+    <app-picture-frame [PictureData]="data"></app-picture-frame>
+  </ng-container>
 </cdk-virtual-scroll-viewport>
