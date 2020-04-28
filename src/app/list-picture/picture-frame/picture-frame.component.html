@@ -4,6 +4,6 @@
     </mat-card-header>
 
     <mat-card-content>
-        <img mat-card-image [src]="pictureRef" alt="{{ PictureData.name }}">
+        <img mat-card-image [src]="pictureRef | async" alt="{{ PictureData.name }}">
     </mat-card-content>
 </mat-card>
