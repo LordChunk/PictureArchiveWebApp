@@ -68,7 +68,11 @@ export class PictureService {
   }
 
   public getPictureRefs(amount?: number, offset: number = 0): Observable<PictureDocument[]> {
-    const pictureCollection = this.afs.collection<PictureDocument>('picture');
+    const pictureCollection = this.afs.collection<PictureDocument>(
+      'picture',
+      (ref) => {
+        return ref.orderBy('dateUploaded', 'desc').orderBy('uid', 'asc');
+      });
 
     return pictureCollection.valueChanges();
   }
