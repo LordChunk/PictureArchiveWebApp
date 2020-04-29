@@ -36,22 +36,24 @@ export class PictureService {
         metaTags,
       };
 
-      pictureCollection.doc(uid).set(pictureDocument)
-        .then((ref) => {
-          const uploadTask = this.storage.ref(`picture/${uid}.${fileExtension}`)
-            .putString(rawBase64, 'base64', { contentType: `${fileType}` });
+      const uploadTask = this.storage.ref(`picture/${uid}.${fileExtension}`)
+        .putString(rawBase64, 'base64', { contentType: `${fileType}` });
 
-          // update percentages
-          uploadTask.percentageChanges().subscribe(
-            (newPercentage) => {
-              const currentValues = allPercentages.getValue();
-              currentValues[index] = newPercentage;
-              allPercentages.next(currentValues);
-            },
-            // Delete reference on error
-            () => {
-              pictureCollection.doc(uid).delete();
-            });
+      // update percentages
+      uploadTask.percentageChanges().subscribe(
+        (newPercentage) => {
+          const currentValues = allPercentages.getValue();
+          currentValues[index] = newPercentage;
+          allPercentages.next(currentValues);
+        },
+        () => {
+
+        },
+        // Only add document on upload completion
+        () => {
+          pictureCollection.doc(uid).set(pictureDocument)
+          .then(() => {
+          });
         });
     });
 
