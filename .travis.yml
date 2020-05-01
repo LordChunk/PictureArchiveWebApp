@@ -5,7 +5,6 @@ cache: npm
 sudo: required
 before_script:
   - npm install -g @angular/cli
-  - npm run postinstall
 script:
   - ng build --prod
 before_deploy:
