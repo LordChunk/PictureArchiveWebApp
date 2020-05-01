@@ -6,6 +6,10 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"name": "Firebase Functions",
+			"path": "./functions"
 		}
 	],
 	"settings": {}
