@@ -3,9 +3,7 @@ os: linux
 dist: xenial
 node_js:
   - "node"
-cache:
-  directories:
-  - "node_modules"
+cache: npm
 before_script:
   - npm install -g @angular/cli
 script:
