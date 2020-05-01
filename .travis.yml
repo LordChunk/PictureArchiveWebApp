@@ -3,6 +3,8 @@ node_js:
   - "node"
 cache: npm
 sudo: required
+before_install:
+  - npm run postinstall
 before_script:
   - npm install -g @angular/cli
 script:
