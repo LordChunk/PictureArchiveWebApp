@@ -45,7 +45,7 @@
         "maxAge": "30m",
         "maxSize": 20,
         "strategy": "freshness",
-        "timeout": "30s",
+        "timeout": "30s"
       },
       "urls": [
         "https://firestore.googleapis.com/**"
