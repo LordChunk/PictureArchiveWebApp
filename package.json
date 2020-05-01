@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "update": "ncu -a && npm i",
-    "postinstall": "ngcc --properties esm5 --first-only --create-ivy-entry-points"
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
