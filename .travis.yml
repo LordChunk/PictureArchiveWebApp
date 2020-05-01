@@ -3,7 +3,13 @@ os: linux
 dist: xenial
 node_js:
   - "node"
-cache: npm
+cache:
+  directories:
+  - "node_modules"
+
+before_install:
+  # This prevents npm ci from running and deleting all the cached modules
+  - rm package-lock.json
 before_script:
   - npm install -g @angular/cli
 script:
