@@ -16,6 +16,7 @@ import { ListPictureModule } from './list-picture/list-picture.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { environment } from 'src/environments/environment';
     ListPictureModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   bootstrap: [AppComponent],
   providers: [
