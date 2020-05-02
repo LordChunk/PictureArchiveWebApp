@@ -1,5 +1,5 @@
-(global as any).WebSocket = require('ws');
-(global as any).XMLHttpRequest = require('xhr2');
+// (global as any).WebSocket = require('ws');
+// (global as any).XMLHttpRequest = require('xhr2');
 
 import 'zone.js/dist/zone-node';
 
