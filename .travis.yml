@@ -19,7 +19,7 @@ script:
 before_deploy:
 - rm package-lock.json
 - rm package.json
-- mv app-engine-package.json
+- mv app-engine-package.json package.json
 deploy:
   skip_cleanup: true
   provider: gae
