@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Platform } from '@angular/cdk/platform';
+import { isPlatformServer } from '@angular/common';
 
 @Component({
   selector: 'app-not-found',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  public isServer: boolean;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Platform) { }
 
   ngOnInit() {
+    if(isPlatformServer(this.platformId)) {
+      this.isServer = true;
+    } else {
+      this.isServer = false;
+    }
   }
 
 }

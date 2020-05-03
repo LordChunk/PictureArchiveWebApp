@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/authentication.service';
 import { take, map, tap } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
           map(user => !!user), // <-- map to boolean
           tap((loggedIn) => {
             if (!loggedIn) {
-              this.router.navigate(['/']);
+              this.router.navigate(['/notfound'], { skipLocationChange: true });
             }
           }),
     );
