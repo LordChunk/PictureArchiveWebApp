@@ -2,6 +2,7 @@
   "name": "picture-archive-ssr-app",
   "version": "1.0.0",
   "script": {
-    "start": "node dist/server"
-  }
+    "start": "node dist/PictureArchiveWebApp/server"
+  },
+  "main": "serve.js"
 }
