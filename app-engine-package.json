@@ -1,5 +1,5 @@
 {
-  "name": "Picture Archive SSR app",
+  "name": "picture-archive-ssr-app",
   "version": "1.0.0",
   "script": {
     "start": "node dist/server"
