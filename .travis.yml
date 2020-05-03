@@ -14,14 +14,10 @@ before_script:
 - npm install -g @angular/cli
 script:
 - npm run build:ssr
-# deploy:
-#   provider: firebase
-#   token: "${FIREBASE_TOKEN}"
-#   edge: true
 deploy:
   skip_cleanup: true
   provider: gae
   keyfile: gae-client-secret.json
   project: images-chu-mk
-  on: 
+  on:
     branch: feature/server-side-rendering
