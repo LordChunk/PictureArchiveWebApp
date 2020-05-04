@@ -8,7 +8,7 @@ describe('ListPictureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListPictureComponent ]
+      declarations: [ListPictureComponent],
     })
     .compileComponents();
   }));

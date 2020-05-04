@@ -8,7 +8,7 @@ describe('PictureFrameComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PictureFrameComponent ]
+      declarations: [PictureFrameComponent],
     })
     .compileComponents();
   }));

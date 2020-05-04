@@ -14,7 +14,7 @@ export class NotFoundComponent implements OnInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Platform) { }
 
   ngOnInit() {
-    if(isPlatformServer(this.platformId)) {
+    if (isPlatformServer(this.platformId)) {
       this.isServer = true;
     } else {
       this.isServer = false;
