@@ -2,8 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PictureService } from '../services/picture.service';
 import { Picture } from '../models/picture.model';
-import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { UploadPictureComponent, UploadProgressComponent } from './upload-picture.component';
+import { of } from 'rxjs';
 
 describe('UploadPictureComponent', () => {
   let component: UploadPictureComponent;
@@ -79,6 +80,7 @@ describe('UploadProgressComponent', () => {
         { provide: Picture, useFactory: pictureStub },
         { provide: MatSnackBar, useFactory: matSnackBarStub },
         { provide: MatSnackBarRef, useFactory: matSnackBarRefStub },
+        { provide: MAT_SNACK_BAR_DATA, useValue: { uploadTask: of(100) } },
       ],
     });
     fixture = TestBed.createComponent(UploadProgressComponent);
