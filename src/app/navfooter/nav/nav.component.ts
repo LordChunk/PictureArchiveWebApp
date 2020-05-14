@@ -16,20 +16,13 @@ export class NavComponent {
   appName = environment.appName;
 
   // Navigation JS stuff
-  useNavigationInOverMode: boolean;
+  useNavigationInOverMode = false;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, @Inject(PLATFORM_ID) platformId) {
-    let mobileQuery: MediaQueryList;
     if (isPlatformBrowser(platformId)) {
-      mobileQuery = media.matchMedia('(max-width: 600px)');
-      // tslint:disable-next-line: no-unused-expression
-      mobileQuery.addEventListener('change', (mobileQuery, null));
-    }
-
-    if (mobileQuery !== undefined) {
-      this.useNavigationInOverMode = mobileQuery.matches;
-    } else {
-      this.useNavigationInOverMode = false;
+      media.matchMedia('(max-width: 600px)').addEventListener('change', (mobileQueryEvent) => {
+        this.useNavigationInOverMode = mobileQueryEvent.matches;
+      });
     }
   }
 }
