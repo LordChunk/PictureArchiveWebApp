@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { NAVITEMS } from '../../app-routing.module';
 import { environment } from 'src/environments/environment';
@@ -18,7 +18,7 @@ export class NavComponent {
   // Navigation JS stuff
   useNavigationInOverMode = false;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, @Inject(PLATFORM_ID) platformId) {
+  constructor(media: MediaMatcher, @Inject(PLATFORM_ID) platformId) {
     if (isPlatformBrowser(platformId)) {
       media.matchMedia('(max-width: 600px)').addEventListener('change', (mobileQueryEvent) => {
         this.useNavigationInOverMode = mobileQueryEvent.matches;
