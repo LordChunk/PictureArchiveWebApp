@@ -2,10 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PictureService } from '../services/picture.service';
 import { Picture } from '../models/picture.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSnackBarRef } from '@angular/material/snack-bar';
-import { UploadPictureComponent } from './upload-picture.component';
-import { UploadProgressComponent } from './upload-picture.component';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { UploadPictureComponent, UploadProgressComponent } from './upload-picture.component';
+
 describe('UploadPictureComponent', () => {
   let component: UploadPictureComponent;
   let fixture: ComponentFixture<UploadPictureComponent>;
