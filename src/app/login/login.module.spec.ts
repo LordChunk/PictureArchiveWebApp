@@ -1,13 +1,12 @@
+import { TestBed } from '@angular/core/testing';
 import { LoginModule } from './login.module';
-
 describe('LoginModule', () => {
-  let loginModule: LoginModule;
-
+  let pipe: LoginModule;
   beforeEach(() => {
-    loginModule = new LoginModule();
+    TestBed.configureTestingModule({ providers: [LoginModule] });
+    pipe = TestBed.get(LoginModule);
   });
-
-  it('should create an instance', () => {
-    expect(loginModule).toBeTruthy();
+  it('can load instance', () => {
+    expect(pipe).toBeTruthy();
   });
 });

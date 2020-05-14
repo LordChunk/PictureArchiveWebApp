@@ -1,13 +1,12 @@
+import { TestBed } from '@angular/core/testing';
 import { DashboardModule } from './dashboard.module';
-
 describe('DashboardModule', () => {
-  let dashboardModule: DashboardModule;
-
+  let pipe: DashboardModule;
   beforeEach(() => {
-    dashboardModule = new DashboardModule();
+    TestBed.configureTestingModule({ providers: [DashboardModule] });
+    pipe = TestBed.get(DashboardModule);
   });
-
-  it('should create an instance', () => {
-    expect(dashboardModule).toBeTruthy();
+  it('can load instance', () => {
+    expect(pipe).toBeTruthy();
   });
 });

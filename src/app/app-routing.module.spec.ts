@@ -1,13 +1,12 @@
+import { TestBed } from '@angular/core/testing';
 import { AppRoutingModule } from './app-routing.module';
-
 describe('AppRoutingModule', () => {
-  let appRoutingModule: AppRoutingModule;
-
+  let pipe: AppRoutingModule;
   beforeEach(() => {
-    appRoutingModule = new AppRoutingModule();
+    TestBed.configureTestingModule({ providers: [AppRoutingModule] });
+    pipe = TestBed.get(AppRoutingModule);
   });
-
-  it('should create an instance', () => {
-    expect(appRoutingModule).toBeTruthy();
+  it('can load instance', () => {
+    expect(pipe).toBeTruthy();
   });
 });

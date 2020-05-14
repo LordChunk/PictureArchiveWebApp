@@ -1,13 +1,12 @@
+import { TestBed } from '@angular/core/testing';
 import { ListPictureModule } from './list-picture.module';
-
 describe('ListPictureModule', () => {
-  let listPictureModule: ListPictureModule;
-
+  let pipe: ListPictureModule;
   beforeEach(() => {
-    listPictureModule = new ListPictureModule();
+    TestBed.configureTestingModule({ providers: [ListPictureModule] });
+    pipe = TestBed.get(ListPictureModule);
   });
-
-  it('should create an instance', () => {
-    expect(listPictureModule).toBeTruthy();
+  it('can load instance', () => {
+    expect(pipe).toBeTruthy();
   });
 });

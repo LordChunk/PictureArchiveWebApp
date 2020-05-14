@@ -1,13 +1,12 @@
+import { TestBed } from '@angular/core/testing';
 import { NavfooterModule } from './navfooter.module';
-
 describe('NavfooterModule', () => {
-  let navfooterModule: NavfooterModule;
-
+  let pipe: NavfooterModule;
   beforeEach(() => {
-    navfooterModule = new NavfooterModule();
+    TestBed.configureTestingModule({ providers: [NavfooterModule] });
+    pipe = TestBed.get(NavfooterModule);
   });
-
-  it('should create an instance', () => {
-    expect(navfooterModule).toBeTruthy();
+  it('can load instance', () => {
+    expect(pipe).toBeTruthy();
   });
 });

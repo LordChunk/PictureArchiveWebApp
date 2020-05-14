@@ -1,42 +1,35 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA, ChangeDetectorRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { NAVITEMS } from '../../app-routing.module';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NavComponent } from './nav.component';
-import { MaterialModule } from 'src/app/material/material.module';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { AddEmployeeModule } from 'src/app/add-employee/add-employee.module';
-import { DashboardModule } from 'src/app/dashboard/dashboard.module';
-import { AppModule } from 'src/app/app.module';
-import { APP_BASE_HREF } from '@angular/common';
-
-describe('NavbarComponent', () => {
+import { environment } from 'src/environments/environment';
+describe('NavComponent', () => {
   let component: NavComponent;
   let fixture: ComponentFixture<NavComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-      ],
-      imports: [
-        MaterialModule,
-        AppRoutingModule,
-        AddEmployeeModule,
-        DashboardModule,
-        AppModule,
-      ],
-      providers: [
-        { provide: APP_BASE_HREF, useValue: '/' },
-      ],
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
+    const changeDetectorRefStub = () => ({ detectChanges: () => ({}) });
+    // const mediaMatcherStub = () => ({ matchMedia: string => ({}) });
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [NavComponent],
+      providers: [
+        { provide: ChangeDetectorRef, useFactory: changeDetectorRefStub },
+        // { provide: MediaMatcher, useFactory: mediaMatcherStub },
+      ],
+    });
     fixture = TestBed.createComponent(NavComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
-
-  it('should create', () => {
+  it('can load instance', () => {
     expect(component).toBeTruthy();
+  });
+  it('navItems defaults to: NAVITEMS', () => {
+    expect(component.navItems).toEqual(NAVITEMS);
+  });
+  it('appName defaults to: environment.appName', () => {
+    expect(component.appName).toEqual(environment.appName);
   });
 });

@@ -22,6 +22,7 @@ export class NavComponent {
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this.mobileQueryListener);
+    // tslint:disable-next-line: no-unused-expression
+    this.mobileQuery.addEventListener('change', (this.mobileQuery, null));
   }
 }

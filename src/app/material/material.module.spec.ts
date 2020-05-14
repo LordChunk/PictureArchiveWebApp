@@ -1,13 +1,12 @@
+import { TestBed } from '@angular/core/testing';
 import { MaterialModule } from './material.module';
-
 describe('MaterialModule', () => {
-  let materialModule: MaterialModule;
-
+  let pipe: MaterialModule;
   beforeEach(() => {
-    materialModule = new MaterialModule();
+    TestBed.configureTestingModule({ providers: [MaterialModule] });
+    pipe = TestBed.get(MaterialModule);
   });
-
-  it('should create an instance', () => {
-    expect(materialModule).toBeTruthy();
+  it('can load instance', () => {
+    expect(pipe).toBeTruthy();
   });
 });
