@@ -7,6 +7,8 @@ cache:
   directories:
   - "node_modules"
 
+services:
+  - docker
 addons:
   chrome: stable
 
@@ -18,8 +20,9 @@ before_script:
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
   - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-  - ng build --prod
+  - docker build -t lordchunk/picture-archive-web-app:${TRAVIS_BRANCH}
 deploy:
-  provider: firebase
-  token: ${FIREBASE_TOKEN}
-  edge: true
+  provider: script
+  script: bash docker_push
+  on:
+    branch: feature/docker
