@@ -10,14 +10,14 @@ describe('NavComponent', () => {
   let fixture: ComponentFixture<NavComponent>;
   beforeEach(() => {
     const changeDetectorRefStub = () => ({ detectChanges: () => ({}) });
-    const mediaMatcherStub = () => ({ matchMedia: string => ({}) });
+    // const mediaMatcherStub = () => ({ matchMedia: string => ({}) });
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [NavComponent],
       providers: [
         { provide: ChangeDetectorRef, useFactory: changeDetectorRefStub },
-        { provide: MediaMatcher, useFactory: mediaMatcherStub },
+        // { provide: MediaMatcher, useFactory: mediaMatcherStub },
       ],
     });
     fixture = TestBed.createComponent(NavComponent);
