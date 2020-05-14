@@ -7,7 +7,7 @@ describe('FooterComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [FooterComponent]
+      declarations: [FooterComponent],
     });
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;

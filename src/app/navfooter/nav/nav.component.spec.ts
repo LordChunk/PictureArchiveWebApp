@@ -18,8 +18,8 @@ describe('NavComponent', () => {
       declarations: [NavComponent],
       providers: [
         { provide: ChangeDetectorRef, useFactory: changeDetectorRefStub },
-        { provide: MediaMatcher, useFactory: mediaMatcherStub }
-      ]
+        { provide: MediaMatcher, useFactory: mediaMatcherStub },
+      ],
     });
     fixture = TestBed.createComponent(NavComponent);
     component = fixture.componentInstance;

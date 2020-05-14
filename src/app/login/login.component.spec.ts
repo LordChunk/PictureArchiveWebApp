@@ -12,15 +12,15 @@ describe('LoginComponent', () => {
       user: {},
       login: (arg, arg2) => ({}),
       register: (arg, arg2) => ({}),
-      logout: () => ({})
+      logout: () => ({}),
     });
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [LoginComponent],
       providers: [
         { provide: FormBuilder, useFactory: formBuilderStub },
-        { provide: AuthService, useFactory: authServiceStub }
-      ]
+        { provide: AuthService, useFactory: authServiceStub },
+      ],
     });
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
@@ -31,7 +31,7 @@ describe('LoginComponent', () => {
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
       const formBuilderStub: FormBuilder = fixture.debugElement.injector.get(
-        FormBuilder
+        FormBuilder,
       );
       spyOn(formBuilderStub, 'group').and.callThrough();
       component.ngOnInit();
@@ -41,7 +41,7 @@ describe('LoginComponent', () => {
   describe('login', () => {
     it('makes expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
-        AuthService
+        AuthService,
       );
       spyOn(authServiceStub, 'login').and.callThrough();
       component.login();
@@ -51,7 +51,7 @@ describe('LoginComponent', () => {
   describe('register', () => {
     it('makes expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
-        AuthService
+        AuthService,
       );
       spyOn(authServiceStub, 'register').and.callThrough();
       component.register();
@@ -61,7 +61,7 @@ describe('LoginComponent', () => {
   describe('logout', () => {
     it('makes expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
-        AuthService
+        AuthService,
       );
       spyOn(authServiceStub, 'logout').and.callThrough();
       component.logout();

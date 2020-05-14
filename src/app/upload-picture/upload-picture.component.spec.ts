@@ -12,12 +12,12 @@ describe('UploadPictureComponent', () => {
   beforeEach(() => {
     const pictureServiceStub = () => ({
       upload: uploadablePictures => ({
-        pipe: () => ({ subscribe: f => f({}) })
-      })
+        pipe: () => ({ subscribe: f => f({}) }),
+      }),
     });
     const pictureStub = () => ({ index: {}, name: {}, metaTags: {} });
     const matSnackBarStub = () => ({
-      openFromComponent: (uploadProgressComponent, object) => ({})
+      openFromComponent: (uploadProgressComponent, object) => ({}),
     });
     const matSnackBarRefStub = () => ({ dismiss: () => ({}) });
     TestBed.configureTestingModule({
@@ -27,8 +27,8 @@ describe('UploadPictureComponent', () => {
         { provide: PictureService, useFactory: pictureServiceStub },
         { provide: Picture, useFactory: pictureStub },
         { provide: MatSnackBar, useFactory: matSnackBarStub },
-        { provide: MatSnackBarRef, useFactory: matSnackBarRefStub }
-      ]
+        { provide: MatSnackBarRef, useFactory: matSnackBarRefStub },
+      ],
     });
     fixture = TestBed.createComponent(UploadPictureComponent);
     component = fixture.componentInstance;
@@ -45,10 +45,10 @@ describe('UploadPictureComponent', () => {
   describe('uploadImages', () => {
     it('makes expected calls', () => {
       const pictureServiceStub: PictureService = fixture.debugElement.injector.get(
-        PictureService
+        PictureService,
       );
       const matSnackBarStub: MatSnackBar = fixture.debugElement.injector.get(
-        MatSnackBar
+        MatSnackBar,
       );
       spyOn(pictureServiceStub, 'upload').and.callThrough();
       spyOn(matSnackBarStub, 'openFromComponent').and.callThrough();
@@ -64,12 +64,12 @@ describe('UploadProgressComponent', () => {
   beforeEach(() => {
     const pictureServiceStub = () => ({
       upload: uploadablePictures => ({
-        pipe: () => ({ subscribe: f => f({}) })
-      })
+        pipe: () => ({ subscribe: f => f({}) }),
+      }),
     });
     const pictureStub = () => ({ index: {}, name: {}, metaTags: {} });
     const matSnackBarStub = () => ({
-      openFromComponent: (uploadProgressComponent, object) => ({})
+      openFromComponent: (uploadProgressComponent, object) => ({}),
     });
     const matSnackBarRefStub = () => ({ dismiss: () => ({}) });
     TestBed.configureTestingModule({
@@ -79,8 +79,8 @@ describe('UploadProgressComponent', () => {
         { provide: PictureService, useFactory: pictureServiceStub },
         { provide: Picture, useFactory: pictureStub },
         { provide: MatSnackBar, useFactory: matSnackBarStub },
-        { provide: MatSnackBarRef, useFactory: matSnackBarRefStub }
-      ]
+        { provide: MatSnackBarRef, useFactory: matSnackBarRefStub },
+      ],
     });
     fixture = TestBed.createComponent(UploadProgressComponent);
     component = fixture.componentInstance;
@@ -91,7 +91,7 @@ describe('UploadProgressComponent', () => {
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
       const matSnackBarRefStub: MatSnackBarRef<any> = fixture.debugElement.injector.get(
-        MatSnackBarRef
+        MatSnackBarRef,
       );
       spyOn(matSnackBarRefStub, 'dismiss').and.callThrough();
       component.ngOnInit();

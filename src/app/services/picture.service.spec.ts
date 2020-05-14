@@ -8,24 +8,24 @@ describe('PictureService', () => {
     const angularFirestoreStub = () => ({
       collection: string => ({
         doc: () => ({ set: () => ({ then: () => ({}) }) }),
-        valueChanges: () => ({})
+        valueChanges: () => ({}),
       }),
-      createId: () => ({})
+      createId: () => ({}),
     });
     const angularFireStorageStub = () => ({
       ref: arg => ({
         putString: () => ({
-          percentageChanges: () => ({ subscribe: f => f({}) })
+          percentageChanges: () => ({ subscribe: f => f({}) }),
         }),
-        getDownloadURL: () => ({})
-      })
+        getDownloadURL: () => ({}),
+      }),
     });
     TestBed.configureTestingModule({
       providers: [
         PictureService,
         { provide: AngularFirestore, useFactory: angularFirestoreStub },
-        { provide: AngularFireStorage, useFactory: angularFireStorageStub }
-      ]
+        { provide: AngularFireStorage, useFactory: angularFireStorageStub },
+      ],
     });
     service = TestBed.get(PictureService);
   });

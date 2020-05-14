@@ -7,17 +7,17 @@ describe('AuthService', () => {
     const angularFireAuthStub = () => ({
       authState: {
         subscribe: f => f({}),
-        pipe: () => ({ toPromise: () => ({}) })
+        pipe: () => ({ toPromise: () => ({}) }),
       },
       signInWithEmailAndPassword: (email, password) => ({}),
       createUserWithEmailAndPassword: (email, password) => ({}),
-      signOut: () => ({})
+      signOut: () => ({}),
     });
     TestBed.configureTestingModule({
       providers: [
         AuthService,
-        { provide: AngularFireAuth, useFactory: angularFireAuthStub }
-      ]
+        { provide: AngularFireAuth, useFactory: angularFireAuthStub },
+      ],
     });
     service = TestBed.get(AuthService);
   });

@@ -10,7 +10,7 @@ describe('ListPictureComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ListPictureComponent],
-      providers: [{ provide: PictureService, useFactory: pictureServiceStub }]
+      providers: [{ provide: PictureService, useFactory: pictureServiceStub }],
     });
     fixture = TestBed.createComponent(ListPictureComponent);
     component = fixture.componentInstance;
@@ -21,7 +21,7 @@ describe('ListPictureComponent', () => {
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
       const pictureServiceStub: PictureService = fixture.debugElement.injector.get(
-        PictureService
+        PictureService,
       );
       spyOn(pictureServiceStub, 'getPictureRefs').and.callThrough();
       component.ngOnInit();
