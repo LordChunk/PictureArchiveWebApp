@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   apiUri: 'https://picturearchive1.azurewebsites.net',
   firebase: {
     apiKey: 'AIzaSyAvK_cpvCf6_zcr6YEWNZoBPECNp1_nKEw',
