@@ -16,6 +16,15 @@ describe('PictureFrameComponent', () => {
     });
     fixture = TestBed.createComponent(PictureFrameComponent);
     component = fixture.componentInstance;
+
+    component.PictureData = {
+      name: 'IMG_0112',
+      uid: 'MwHbgk2vJMzCfe9PwhTR',
+      fileType: 'image/jpeg',
+      dateUploaded: new Date('2020-04-29T16:03:20.475Z'),
+      dateTaken: new Date('2017-06-10T12:28:38Z'),
+      metaTags: ['ofnie'],
+    }  ;
   });
   it('can load instance', () => {
     expect(component).toBeTruthy();
