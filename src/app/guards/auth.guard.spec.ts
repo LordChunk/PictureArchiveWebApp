@@ -16,12 +16,12 @@ describe('AuthGuard', () => {
         AuthGuard,
         {
           provide: ActivatedRouteSnapshot,
-          useFactory: activatedRouteSnapshotStub
+          useFactory: activatedRouteSnapshotStub,
         },
         { provide: RouterStateSnapshot, useFactory: routerStateSnapshotStub },
         { provide: Router, useFactory: routerStub },
-        { provide: AuthService, useFactory: authServiceStub }
-      ]
+        { provide: AuthService, useFactory: authServiceStub },
+      ],
     });
     service = TestBed.get(AuthGuard);
   });
@@ -31,10 +31,10 @@ describe('AuthGuard', () => {
   describe('canActivate', () => {
     it('makes expected calls', () => {
       const activatedRouteSnapshotStub: ActivatedRouteSnapshot = TestBed.get(
-        ActivatedRouteSnapshot
+        ActivatedRouteSnapshot,
       );
       const routerStateSnapshotStub: RouterStateSnapshot = TestBed.get(
-        RouterStateSnapshot
+        RouterStateSnapshot,
       );
       const routerStub: Router = TestBed.get(Router);
       spyOn(routerStub, 'navigate').and.callThrough();

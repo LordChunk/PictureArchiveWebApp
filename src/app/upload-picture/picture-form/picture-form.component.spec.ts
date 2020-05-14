@@ -33,7 +33,7 @@ describe('PictureFormComponent', () => {
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
       const formBuilderStub: FormBuilder = fixture.debugElement.injector.get(
-        FormBuilder
+        FormBuilder,
       );
       spyOn(component, 'formValueChangeEvent').and.callThrough();
       spyOn(formBuilderStub, 'group').and.callThrough();

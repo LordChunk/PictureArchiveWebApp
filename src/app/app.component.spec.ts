@@ -10,7 +10,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [AppComponent],
-      providers: [{ provide: AuthService, useFactory: authServiceStub }]
+      providers: [{ provide: AuthService, useFactory: authServiceStub }],
     });
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;

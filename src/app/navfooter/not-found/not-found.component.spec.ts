@@ -10,7 +10,7 @@ describe('NotFoundComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [NotFoundComponent],
-      providers: [{ provide: Platform, useFactory: platformStub }]
+      providers: [{ provide: Platform, useFactory: platformStub }],
     });
     fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
