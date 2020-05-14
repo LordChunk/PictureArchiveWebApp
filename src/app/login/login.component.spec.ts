@@ -7,7 +7,6 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   beforeEach(() => {
-    const formBuilderStub = () => ({ group: object => ({}) });
     const authServiceStub = () => ({
       user: {},
       login: (arg, arg2) => ({}),
@@ -18,7 +17,7 @@ describe('LoginComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [LoginComponent],
       providers: [
-        { provide: FormBuilder, useFactory: formBuilderStub },
+        { provide: FormBuilder },
         { provide: AuthService, useFactory: authServiceStub },
       ],
     });
@@ -43,6 +42,7 @@ describe('LoginComponent', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService,
       );
+      component.ngOnInit();
       spyOn(authServiceStub, 'login').and.callThrough();
       component.login();
       expect(authServiceStub.login).toHaveBeenCalled();
@@ -53,6 +53,8 @@ describe('LoginComponent', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService,
       );
+      component.ngOnInit();
+
       spyOn(authServiceStub, 'register').and.callThrough();
       component.register();
       expect(authServiceStub.register).toHaveBeenCalled();
