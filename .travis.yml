@@ -7,6 +7,8 @@ cache:
   directories:
   - "node_modules"
 
+services:
+  - docker
 addons:
   chrome: stable
 
@@ -15,11 +17,14 @@ before_install:
   - rm package-lock.json
 before_script:
   - npm install -g @angular/cli
-script:
+# Run tests before building so we don't run unnecessary builds
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-  - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-  - ng build --prod
+  # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+script:
+  - npm run build:ssr
+  - docker build . -t ${DOCKER_USERNAME}/picture-archive-web-app:latest
 deploy:
-  provider: firebase
-  token: ${FIREBASE_TOKEN}
-  edge: true
+  provider: script
+  script: bash docker_push
+  on:
+    branch: feature/docker

@@ -30,25 +30,24 @@
     {
       "name": "images",
       "cacheConfig": {
-        "maxAge": "1d",
-        "maxSize": 50,
-        "strategy": "freshness",
+        "maxAge": "6h",
+        "maxSize": 200,
+        "strategy": "performance",
         "timeout": "10s"      
       },
       "urls": [
-        "https://firebasestorage.googleapis.com/**"
+        "**firebasestorage.googleapis.com/**"
       ]
     },
     {
       "name": "Firestore API calls",
       "cacheConfig": {
+        "strategy": "freshness",
         "maxAge": "30m",
         "maxSize": 20,
-        "strategy": "freshness",
-        "timeout": "30s"
+        "timeout": "10s"
       },
       "urls": [
-        "https://firestore.googleapis.com/**"
       ]
     }
   ]

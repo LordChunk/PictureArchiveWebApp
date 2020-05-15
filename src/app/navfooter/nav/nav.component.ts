@@ -1,7 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { NAVITEMS } from '../../app-routing.module';
 import { environment } from 'src/environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-nav',
@@ -15,14 +16,13 @@ export class NavComponent {
   appName = environment.appName;
 
   // Navigation JS stuff
-  mobileQuery: MediaQueryList;
+  useNavigationInOverMode = false;
 
-  private mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
-    // tslint:disable-next-line: no-unused-expression
-    this.mobileQuery.addEventListener('change', (this.mobileQuery, null));
+  constructor(media: MediaMatcher, @Inject(PLATFORM_ID) platformId) {
+    if (isPlatformBrowser(platformId)) {
+      media.matchMedia('(max-width: 600px)').addEventListener('change', (mobileQueryEvent) => {
+        this.useNavigationInOverMode = mobileQueryEvent.matches;
+      });
+    }
   }
 }
