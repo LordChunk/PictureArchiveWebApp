@@ -30,9 +30,9 @@
     {
       "name": "images",
       "cacheConfig": {
-        "maxAge": "1d",
+        "maxAge": "6h",
         "maxSize": 50,
-        "strategy": "freshness",
+        "strategy": "performance",
         "timeout": "10s"      
       },
       "urls": [
