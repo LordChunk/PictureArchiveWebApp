@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Copy already built app
 COPY /dist /app/dist/
-COPY /local.js /package.json /app/
+COPY /package.json /app/
 
 # Install AngularFire for SSR support
 RUN npm install @angular/fire firebase
