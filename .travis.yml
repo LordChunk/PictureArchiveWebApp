@@ -17,9 +17,11 @@ before_install:
   - rm package-lock.json
 before_script:
   - npm install -g @angular/cli
-script:
+# Run tests before building so we don't run unnecessary builds
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
   - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+script:
+  - npm run build:ssr
   - docker build . -t ${DOCKER_USERNAME}/picture-archive-web-app:latest
 deploy:
   provider: script
