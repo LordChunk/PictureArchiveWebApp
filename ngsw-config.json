@@ -31,7 +31,7 @@
       "name": "images",
       "cacheConfig": {
         "maxAge": "6h",
-        "maxSize": 50,
+        "maxSize": 200,
         "strategy": "performance",
         "timeout": "10s"      
       },
@@ -42,14 +42,12 @@
     {
       "name": "Firestore API calls",
       "cacheConfig": {
+        "strategy": "freshness",
         "maxAge": "30m",
         "maxSize": 20,
-        "strategy": "freshness",
         "timeout": "10s"
       },
       "urls": [
-        "**firestore.googleapis.com/**",
-        "**googleapis.com/identitytoolkit**"
       ]
     }
   ]
