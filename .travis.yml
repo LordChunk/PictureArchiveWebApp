@@ -20,7 +20,7 @@ before_script:
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
   - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-  - docker build -t ${DOCKER_USERNAME}/picture-archive-web-app:${TRAVIS_BRANCH}
+  - docker build -t ${DOCKER_USERNAME}/picture-archive-web-app:latest
 deploy:
   provider: script
   script: bash docker_push
