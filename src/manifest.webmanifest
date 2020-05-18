@@ -6,108 +6,108 @@
   "display": "standalone",
   "start_url": "https://images.chu.mk/",
   "short_name": "Picture Archive",
-  "theme_color": "transparent",
+  "theme_color": "#3f51b5",
   "description": "",
   "orientation": "any",
-  "background_color": "transparent",
+  "background_color": "#fff",
   "related_applications": [],
   "prefer_related_applications": false,
   "icons": [
-      {
-          "src": "/assets/icons/125590ac-681d-281b-c107-0d34bca66401.webPlatform.png",
-          "sizes": "44x44",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/5890e6ea-6d78-e321-35c6-18473dc68909.webPlatform.png",
-          "sizes": "48x48",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/4ab14a1d-72ac-62aa-5d8a-3eba7fec0aad.webPlatform.png",
-          "sizes": "1240x600",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/75064696-bfbf-f0c4-8952-271f70e7802f.webPlatform.png",
-          "sizes": "300x300",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/0d5c8697-0646-ab05-41ed-1eeaf929fbcd.webPlatform.png",
-          "sizes": "150x150",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/7ff944e3-72e5-865a-54d4-4f8faff3470e.webPlatform.png",
-          "sizes": "88x88",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/56e5a16a-4244-fe78-5978-e077a9cbdefe.webPlatform.png",
-          "sizes": "24x24",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/34e69dad-f7c4-339f-ca00-1dd23afc5a6d.webPlatform.png",
-          "sizes": "50x50",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/05f4afab-fe1c-2ef0-a78c-9f0a686b7af5.webPlatform.png",
-          "sizes": "620x300",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/ac2f9154-6e61-c704-657c-372dfdb7753b.webPlatform.png",
-          "sizes": "192x192",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/069882c5-58f3-f11f-aecb-2de909734ff5.webPlatform.png",
-          "sizes": "144x144",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/572f3437-c137-19ac-b6b8-b5f71a7c2de2.webPlatform.png",
-          "sizes": "96x96",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/a13aef3f-46a8-b45b-d746-2bf0d8ac5070.webPlatform.png",
-          "sizes": "72x72",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/c136ef22-1e8e-0502-2a53-5bf24e7c28e1.webPlatform.png",
-          "sizes": "36x36",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/3962238b-88a3-29e2-3597-90960984dc3e.webPlatform.png",
-          "sizes": "1024x1024",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/36c9fd5f-46fb-3f0a-dc08-73aea7234c52.webPlatform.png",
-          "sizes": "180x180",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/875ae7b7-fe53-648d-cd2c-c3806890a089.webPlatform.png",
-          "sizes": "152x152",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/8774c921-f432-41a7-eb4d-30ac6a318df6.webPlatform.png",
-          "sizes": "120x120",
-          "type": "image/png"
-      },
-      {
-          "src": "/assets/icons/99b3e96f-fae3-64d8-1cda-179e6752e113.webPlatform.png",
-          "sizes": "76x76",
-          "type": "image/png"
-      }
+    {
+      "src": "/assets/icons/125590ac-681d-281b-c107-0d34bca66401.webPlatform.png",
+      "sizes": "44x44",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/5890e6ea-6d78-e321-35c6-18473dc68909.webPlatform.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/4ab14a1d-72ac-62aa-5d8a-3eba7fec0aad.webPlatform.png",
+      "sizes": "1240x600",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/75064696-bfbf-f0c4-8952-271f70e7802f.webPlatform.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/0d5c8697-0646-ab05-41ed-1eeaf929fbcd.webPlatform.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/7ff944e3-72e5-865a-54d4-4f8faff3470e.webPlatform.png",
+      "sizes": "88x88",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/56e5a16a-4244-fe78-5978-e077a9cbdefe.webPlatform.png",
+      "sizes": "24x24",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/34e69dad-f7c4-339f-ca00-1dd23afc5a6d.webPlatform.png",
+      "sizes": "50x50",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/05f4afab-fe1c-2ef0-a78c-9f0a686b7af5.webPlatform.png",
+      "sizes": "620x300",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/ac2f9154-6e61-c704-657c-372dfdb7753b.webPlatform.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/069882c5-58f3-f11f-aecb-2de909734ff5.webPlatform.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/572f3437-c137-19ac-b6b8-b5f71a7c2de2.webPlatform.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/a13aef3f-46a8-b45b-d746-2bf0d8ac5070.webPlatform.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/c136ef22-1e8e-0502-2a53-5bf24e7c28e1.webPlatform.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/3962238b-88a3-29e2-3597-90960984dc3e.webPlatform.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/36c9fd5f-46fb-3f0a-dc08-73aea7234c52.webPlatform.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/875ae7b7-fe53-648d-cd2c-c3806890a089.webPlatform.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/8774c921-f432-41a7-eb4d-30ac6a318df6.webPlatform.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/99b3e96f-fae3-64d8-1cda-179e6752e113.webPlatform.png",
+      "sizes": "76x76",
+      "type": "image/png"
+    }
   ],
   "url": "https://images.chu.mk",
   "screenshots": []

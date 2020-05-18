@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AuthService } from './services/authentication.service';
+import { AppUpdateDetectorService } from './services/app-update-detector.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   bootstrap: [AppComponent],
   providers: [
     { provide: BUCKET, useValue: environment.firebase.storageBucket },
+    AuthService,
+    AppUpdateDetectorService,
   ],
 })
 export class AppModule { }
