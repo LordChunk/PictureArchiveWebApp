@@ -10,12 +10,12 @@ describe('AppComponent', () => {
     const swUpdateStub = () => ({
       isEnabled: {},
       available: { subscribe: f => f({}) },
-      checkForUpdate: () => ({ then: () => ({ catch: () => ({}) }) })
+      checkForUpdate: () => ({ then: () => ({ catch: () => ({}) }) }),
     });
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [AppComponent],
-      providers: [{ provide: SwUpdate, useFactory: swUpdateStub }]
+      providers: [{ provide: SwUpdate, useFactory: swUpdateStub }],
     });
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
