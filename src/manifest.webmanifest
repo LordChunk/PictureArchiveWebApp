@@ -4,7 +4,7 @@
   "name": "Picture Archive",
   "scope": "/",
   "display": "standalone",
-  "start_url": "https://images.chu.mk/",
+  "start_url": ".",
   "short_name": "Picture Archive",
   "theme_color": "#3f51b5",
   "description": "",
