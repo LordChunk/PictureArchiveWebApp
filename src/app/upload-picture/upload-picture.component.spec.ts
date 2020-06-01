@@ -15,7 +15,6 @@ describe('UploadPictureComponent', () => {
         pipe: () => ({ subscribe: f => f({}) }),
       }),
     });
-    const pictureStub = () => ({ index: {}, name: {}, metaTags: {} });
     const matSnackBarStub = () => ({
       openFromComponent: (uploadProgressComponent, object) => ({}),
     });
@@ -25,7 +24,6 @@ describe('UploadPictureComponent', () => {
       declarations: [UploadPictureComponent, UploadProgressComponent],
       providers: [
         { provide: PictureService, useFactory: pictureServiceStub },
-        { provide: Picture, useFactory: pictureStub },
         { provide: MatSnackBar, useFactory: matSnackBarStub },
         { provide: MatSnackBarRef, useFactory: matSnackBarRefStub },
       ],
@@ -67,7 +65,6 @@ describe('UploadProgressComponent', () => {
         pipe: () => ({ subscribe: f => f({}) }),
       }),
     });
-    const pictureStub = () => ({ index: {}, name: {}, metaTags: {} });
     const matSnackBarStub = () => ({
       openFromComponent: (uploadProgressComponent, object) => ({}),
     });
@@ -77,7 +74,6 @@ describe('UploadProgressComponent', () => {
       declarations: [UploadPictureComponent, UploadProgressComponent],
       providers: [
         { provide: PictureService, useFactory: pictureServiceStub },
-        { provide: Picture, useFactory: pictureStub },
         { provide: MatSnackBar, useFactory: matSnackBarStub },
         { provide: MatSnackBarRef, useFactory: matSnackBarRefStub },
         { provide: MAT_SNACK_BAR_DATA, useValue: { uploadTask: of(100) } },
