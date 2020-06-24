@@ -5,7 +5,7 @@ describe('UploadPictureModule', () => {
   let pipe: UploadPictureModule;
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [UploadPictureModule] });
-    pipe = TestBed.get(UploadPictureModule);
+    pipe = TestBed.inject(UploadPictureModule);
   });
   it('can load instance', () => {
     expect(pipe).toBeTruthy();

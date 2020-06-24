@@ -4,7 +4,7 @@ describe('MaterialModule', () => {
   let pipe: MaterialModule;
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [MaterialModule] });
-    pipe = TestBed.get(MaterialModule);
+    pipe = TestBed.inject(MaterialModule);
   });
   it('can load instance', () => {
     expect(pipe).toBeTruthy();

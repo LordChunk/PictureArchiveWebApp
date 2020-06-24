@@ -4,7 +4,7 @@ describe('ListPictureModule', () => {
   let pipe: ListPictureModule;
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [ListPictureModule] });
-    pipe = TestBed.get(ListPictureModule);
+    pipe = TestBed.inject(ListPictureModule);
   });
   it('can load instance', () => {
     expect(pipe).toBeTruthy();

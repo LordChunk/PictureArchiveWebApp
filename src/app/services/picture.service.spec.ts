@@ -27,7 +27,7 @@ describe('PictureService', () => {
         { provide: AngularFireStorage, useFactory: angularFireStorageStub },
       ],
     });
-    service = TestBed.get(PictureService);
+    service = TestBed.inject(PictureService);
   });
   it('can load instance', () => {
     expect(service).toBeTruthy();

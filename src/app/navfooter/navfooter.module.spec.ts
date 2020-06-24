@@ -4,7 +4,7 @@ describe('NavfooterModule', () => {
   let pipe: NavfooterModule;
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [NavfooterModule] });
-    pipe = TestBed.get(NavfooterModule);
+    pipe = TestBed.inject(NavfooterModule);
   });
   it('can load instance', () => {
     expect(pipe).toBeTruthy();

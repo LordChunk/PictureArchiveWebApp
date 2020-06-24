@@ -4,7 +4,7 @@ describe('DashboardModule', () => {
   let pipe: DashboardModule;
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [DashboardModule] });
-    pipe = TestBed.get(DashboardModule);
+    pipe = TestBed.inject(DashboardModule);
   });
   it('can load instance', () => {
     expect(pipe).toBeTruthy();
