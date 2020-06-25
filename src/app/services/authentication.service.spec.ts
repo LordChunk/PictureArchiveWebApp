@@ -19,14 +19,14 @@ describe('AuthService', () => {
         { provide: AngularFireAuth, useFactory: angularFireAuthStub },
       ],
     });
-    service = TestBed.get(AuthService);
+    service = TestBed.inject(AuthService);
   });
   it('can load instance', () => {
     expect(service).toBeTruthy();
   });
   describe('logout', () => {
     it('makes expected calls', () => {
-      const angularFireAuthStub: AngularFireAuth = TestBed.get(AngularFireAuth);
+      const angularFireAuthStub: AngularFireAuth = TestBed.inject(AngularFireAuth);
       spyOn(angularFireAuthStub, 'signOut').and.callThrough();
       service.logout();
       expect(angularFireAuthStub.signOut).toHaveBeenCalled();
