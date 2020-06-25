@@ -5,7 +5,7 @@
 			"path": "./src/app"
 		},
 		{
-			"path": "."
+			"path": "../"
 		}
 	],
 	"settings": {}
