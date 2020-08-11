@@ -2,7 +2,7 @@
 	"folders": [
 		{
 			"name": "app",
-			"path": "./src/app"
+			"path": "../src/app"
 		},
 		{
 			"path": "../"
