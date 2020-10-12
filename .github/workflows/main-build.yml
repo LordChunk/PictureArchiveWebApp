@@ -40,17 +40,18 @@ jobs:
         uses: actions/upload-artifact@v2.2.0
         with:
           path: dist/
-#           name: ssr-build
+          name: ssr-build
   docker:
-    runs-on: ubuntu-latest
     name: Publish Docker Container
+    needs: [build]
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     
     steps:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.0.5
         with:
-#           name: ssr-build
+          name: ssr-build
           path: dist/
 
       - name: Login to DockerHub
