@@ -9,7 +9,7 @@ on:
     workflows: ["Build SSR Client"]
     branch: [main, master]
     types:
-      - completeed
+      - completed
 jobs:
   # This workflow contains a single job called "build"
   docker:
