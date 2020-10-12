@@ -1,9 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Build SSR Client
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+name: Build and Publish
 on:
   push:
 #     branches: [ master ]
@@ -14,6 +9,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    name: Build SSR Client
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -45,18 +41,28 @@ jobs:
         with:
           path: dist/
           name: ssr-build
-        
-#       - name: Login to DockerHub
-#         uses: docker/login-action@v1 
-#         with:
-#           registry: index.docker.io
-#           username: ${{ secrets.DOCKER_USERNAME }}
-#           password: ${{ secrets.DOCKER_PASSWORD }}
+  docker:
+    runs-on: ubuntu-latest
+    name: Publish Docker Container
+    if: github.ref == 'refs/heads/master'
+    
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.0.5
+        with:
+          name: ssr-build
+          path: dist/
 
-#       - name: Build and push docker image        
-#         uses: docker/build-push-action@v2
-#         if: github.ref == 'refs/heads/master'
-#         with:
-#           # push: true
-#           # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
-#           tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:latest
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          registry: index.docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push docker image        
+        uses: docker/build-push-action@v2
+        with:
+          # push: true
+          # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:latest
