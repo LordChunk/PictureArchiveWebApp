@@ -23,5 +23,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          image_name: $IMAGE_NAME
+          image_name: ${{ IMAGE_NAME }}
           push_image_and_stages: docker run $IMAGE_NAME
