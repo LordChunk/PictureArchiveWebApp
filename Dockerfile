@@ -1,15 +1,28 @@
-FROM node:lts-alpine3.9
+FROM node:lts-alpine AS build
+WORKDIR /build
 
+# Install all dependencies
+COPY package*.json ./
+RUN npm install -g @angular/cli
+RUN npm install
+
+# Copy source files
+COPY . .
+
+# Build ssr client
+RUN npm run build:ssr
+
+FROM node:lts-alpine
 WORKDIR /app
 
-# Copy already built app
-COPY /PictureArchiveWebApp /app/PictureArchiveWebApp/
+# Copy build artifacts
+COPY --from=build /build/dist /app/dist
 
 # Install AngularFire for SSR support
 RUN npm install @angular/fire firebase
 
-# Expose the port the app runs in
+# Expose web port
 EXPOSE 8080
 
-# Serve the app
-CMD ["node", "PictureArchiveWebApp/server/main.js"]
+# Start SSR client
+CMD ["node", "dist/PictureArchiveWebApp/server/main.js"]

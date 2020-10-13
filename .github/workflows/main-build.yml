@@ -17,7 +17,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Cache node modules
         uses: actions/cache@v2
         with:
@@ -32,43 +32,12 @@ jobs:
 
       - name: Run NPM tests in Chrome
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      
+
       - name: Build SSR version
         run: npm run build:ssr
-      
+
       - name: Upload Build Folder
         uses: actions/upload-artifact@v2.2.0
         with:
           path: dist/
           name: ssr-build
-  docker:
-    name: Publish Docker Container
-    needs: [build]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-    
-    steps:
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v2.0.5
-        with:
-          name: ssr-build
-#           path: ~/dist
-
-      - name: Display structure of downloaded files
-        run: |
-          pwd
-          ls -R
-          
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          registry: index.docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and push docker image        
-        uses: docker/build-push-action@v2
-        with:
-          # push: true
-          # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
-          tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:latest
