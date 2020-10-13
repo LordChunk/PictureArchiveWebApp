@@ -3,8 +3,7 @@ FROM node:lts-alpine3.9
 WORKDIR /app
 
 # Copy already built app
-COPY /dist /app/dist/
-COPY /package.json /app/
+COPY /PictureArchiveWebApp /app/PictureArchiveWebApp/
 
 # Install AngularFire for SSR support
 RUN npm install @angular/fire firebase
@@ -13,4 +12,4 @@ RUN npm install @angular/fire firebase
 EXPOSE 8080
 
 # Serve the app
-CMD ["npm", "run", "serve:ssr"]
+CMD ["node", "PictureArchiveWebApp/server/main.js"]
