@@ -12,7 +12,7 @@ COPY . .
 # Build ssr client
 RUN npm run build:ssr
 
-FROM node:lts-alpine
+FROM node:lts-alpine as ssr-npm
 WORKDIR /app
 
 # Copy build artifacts
@@ -20,6 +20,12 @@ COPY --from=build /build/dist /app/dist
 
 # Install AngularFire for SSR support
 RUN npm install @angular/fire firebase
+
+FROM node:lts-alpine
+
+WORKDIR /production
+
+COPY --from=ssr-npm /app /production
 
 # Expose web port
 EXPOSE 8080
