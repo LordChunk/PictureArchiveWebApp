@@ -34,5 +34,3 @@ jobs:
           
           image_tag: ${{ env.BRANCH_NAME }}
           image_name: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
-          
-          push_image_and_stages: docker run ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:${{ env.BRANCH_NAME }}
