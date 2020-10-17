@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "update": "ncu -a && npm i",
-    "postinstall": "ngcc --properties module --first-only --create-ivy-entry-points",
+    "postinstall": "ngcc --first-only --create-ivy-entry-points",
     "dev:ssr": "ng run PictureArchiveWebApp:serve-ssr",
     "serve:ssr": "node dist/PictureArchiveWebApp/server/main.js",
     "build:ssr": "ng build --prod && ng run PictureArchiveWebApp:server:production",
