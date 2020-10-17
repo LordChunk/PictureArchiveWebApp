@@ -21,7 +21,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           
-          image_tag: ${BRANCH_NAME}
+          image_tag: ${{ BRANCH_NAME }}
           image_name: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}
           
           push_image_and_stages: docker run ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:${BRANCH_NAME}
