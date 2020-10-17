@@ -12,12 +12,16 @@ jobs:
       - name: Get branch name (merge)
         if: github.event_name != 'pull_request'
         shell: bash
-        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+        run:  |
+          echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+          echo ${{ env.BRANCH_NAME }}
         
       - name: Replace master/main Branch Names with latest
         if: ${{ env.BRANCH_NAME }} == 'master'
         shell: bash
-        run: echo "BRANCH_NAME=latest" >> $GITHUB_ENV
+        run: |
+          echo "BRANCH_NAME=latest" >> $GITHUB_ENV
+          echo ${{ env.BRANCH_NAME }}
         
       - uses: actions/checkout@v2
         name: Checkout Repository
