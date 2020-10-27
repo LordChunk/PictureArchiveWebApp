@@ -48,7 +48,7 @@
     "@types/express": "^4.17.8",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.8",
-    "@types/node": "~14.14.3",
+    "@types/node": "~14.14.5",
     "codelyzer": "~6.0.1",
     "firebase-tools": "^8.13.1",
     "fuzzy": "^0.1.3",
