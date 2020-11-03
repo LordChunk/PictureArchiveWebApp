@@ -35,4 +35,5 @@ jobs:
 
           image_tag: ${{ env.BRANCH_NAME }}
           image_name: ${{ secrets.DOCKER_REPOSITORY }}
+          push_image_and_stages: false
 #           cache: true
