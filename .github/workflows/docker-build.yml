@@ -29,6 +29,8 @@ jobs:
       - uses: whoan/docker-build-with-cache-action@v5
         name: Build, Cache and Push Docker Image
         with:
+          push_image_and_stages: !github.event.pull_request.draft
+
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ${{ secrets.DOCKER_REGISTRY }}
