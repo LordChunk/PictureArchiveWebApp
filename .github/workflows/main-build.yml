@@ -37,7 +37,7 @@ jobs:
         run: npm run build
 
       - name: Upload Build Folder
-        uses: actions/upload-artifact@v2.2.0
+        uses: actions/upload-artifact@v2.2.1
         with:
           path: dist/
           name: build
