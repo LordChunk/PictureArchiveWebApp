@@ -24,7 +24,7 @@ export const NAVITEMS: NavItem[] = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     BrowserModule,
   ],
 
